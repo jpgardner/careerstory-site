@@ -1,427 +1,2802 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Loan Agreement — Gardner / Belohlavy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-id="th-modified">Career Story — The Site That Gets You The Interview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700&family=IBM+Plex+Mono:wght@400;500&family=Barlow+Condensed:wght@300;400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#0f0e0d;
-  --ink2:#4a4845;
-  --ink3:#8a8784;
-  --paper:#faf9f7;
-  --cream:#f0ede6;
-  --rule:#dedad4;
-  --gold:#b08d57;
-  --gold-lt:#f5ead8;
-  --green:#2d6a4f;
-  --green-lt:#e8f5ee;
-  --blue-lt:#eef4ff;
-  --blue:#2a5cbf;
-  --red:#c0392b;
-  --r:6px;
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
+/* ============================================================
+   SERVICE PAGE — DESIGN TOKENS
+============================================================ */
+:root {
+  --ink:      #1A1714;
+  --paper:    #F4F0E8;
+  --paper2:   #EDE8DC;
+  --paper3:   #E4DDD0;
+  --red:      #C13A1F;
+  --red-dim:  #8C2A16;
+  --gold:     #C8960A;
+  --muted:    #7A7260;
+  --rule:     rgba(26,23,20,0.15);
+  --mono:     'IBM Plex Mono', monospace;
+  --head:     'Bebas Neue', sans-serif;
+  --cond:     'Barlow Condensed', sans-serif;
+  --serif:    'Playfair Display', serif;
+  --body:     'Lora', serif;
 }
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;min-height:100vh;display:flex;justify-content:center;padding:3rem 1rem 6rem;}
-.page{width:100%;max-width:620px;}
-.masthead{text-align:center;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--rule);}
-.eyebrow{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;}
-.masthead h1{font-family:var(--serif);font-size:28px;font-weight:400;line-height:1.2;margin-bottom:.4rem;}
-.masthead p{font-size:13px;color:var(--ink3);}
-.progress{display:flex;gap:5px;margin-bottom:2.5rem;}
-.step{flex:1;height:2px;border-radius:99px;background:var(--rule);transition:background .4s;}
-.step.done{background:var(--ink);}
-.step.active{background:var(--gold);}
-.sec-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
-table.terms{width:100%;border-collapse:collapse;margin-bottom:1.5rem;}
-table.terms tr{border-bottom:1px solid var(--rule);}
-table.terms tr:last-child{border-bottom:none;}
-table.terms td{padding:10px 0;font-size:13.5px;vertical-align:top;line-height:1.55;}
-table.terms td:first-child{color:var(--ink2);width:44%;padding-right:1rem;}
-table.terms td:last-child{color:var(--ink);font-weight:400;}
-.notice{border-left:3px solid var(--gold);background:var(--gold-lt);padding:12px 16px;border-radius:0 var(--r) var(--r) 0;font-size:13px;color:#6b5020;line-height:1.65;margin-bottom:1.5rem;}
-.sig-card{border:1px solid var(--rule);border-radius:var(--r);padding:1.25rem;background:#fff;margin-bottom:1.25rem;}
-.sig-card label{display:block;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
-.sig-card input{width:100%;border:none;border-bottom:1px solid var(--rule);background:transparent;font-family:var(--serif);font-size:22px;color:var(--ink);padding:6px 0;outline:none;transition:border-color .2s;}
-.sig-card input:focus{border-color:var(--gold);}
-.sig-card input::placeholder{color:var(--rule);font-style:italic;}
-.sig-meta{margin-top:8px;font-size:12px;color:var(--ink3);}
-.signed-box{background:var(--green-lt);border:1px solid #b7dcc9;border-radius:var(--r);padding:1.25rem;margin-bottom:1rem;}
-.signed-box .name{font-family:var(--serif);font-size:22px;color:var(--ink);margin-bottom:5px;}
-.signed-box .detail{font-size:12px;color:var(--green);}
-.share-box{background:var(--blue-lt);border:1px solid #c0d0ef;border-radius:var(--r);padding:1.25rem;margin-bottom:1.5rem;}
-.share-box p{font-size:13px;color:var(--blue);margin-bottom:10px;line-height:1.55;}
-.url-row{display:flex;gap:8px;align-items:center;}
-.url-row input{flex:1;background:#fff;border:1px solid #c0d0ef;border-radius:var(--r);padding:9px 12px;font-size:12px;color:var(--ink2);font-family:var(--sans);outline:none;}
-.copy-btn{background:var(--blue);color:#fff;border:none;border-radius:var(--r);padding:9px 16px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:opacity .15s;}
-.copy-btn:hover{opacity:.85;}
-.copy-btn.copied{background:var(--green);}
-.btn{display:block;width:100%;padding:14px;background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:.03em;border:none;border-radius:var(--r);cursor:pointer;transition:opacity .15s;margin-top:1.5rem;}
-.btn:hover:not(:disabled){opacity:.85;}
-.btn:disabled{opacity:.3;cursor:not-allowed;}
-.complete-top{text-align:center;padding:1.5rem 0 2rem;}
-.complete-icon{width:52px;height:52px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;}
-.complete-top h2{font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:.5rem;}
-.complete-top p{font-size:14px;color:var(--ink3);}
-.id-badge{display:inline-block;background:var(--cream);border:1px solid var(--rule);border-radius:var(--r);padding:6px 14px;font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--ink2);margin-top:1rem;}
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.err{color:var(--red);font-size:13px;margin-top:.75rem;text-align:center;min-height:18px;}
-</style>
-</head>
+
+/* ============================================================
+   RESET + BASE
+============================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--body);
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  font-size: 17px;
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* Noise overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   MASTHEAD
+============================================================ */
+.masthead {
+  border-bottom: 3px solid var(--ink);
+  padding: 0 40px;
+  background: var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.masthead-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+.masthead-logo {
+  font-family: var(--head);
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  line-height: 1;
+}
+.masthead-logo span { color: var(--red); }
+.masthead-nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+}
+.masthead-nav a {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: rgba(244,240,232,0.5);
+  padding: 0 20px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(255,255,255,0.07);
+  transition: color 0.15s, background 0.15s;
+  text-transform: uppercase;
+}
+.masthead-nav a:hover { color: var(--paper); background: rgba(255,255,255,0.05); }
+.masthead-cta {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-left: 20px;
+}
+.masthead-cta:hover { background: #e0a80a; }
+
+/* ============================================================
+   DATELINE BAR
+============================================================ */
+.dateline {
+  background: var(--paper2);
+  border-bottom: 1px solid var(--rule);
+  padding: 7px 40px;
+}
+.dateline-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.dateline-item {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dateline-item::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+.dateline-item:first-child::before { display: none; }
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 0;
+  border-bottom: 2px solid var(--ink);
+}
+.hero-left {
+  padding-right: 60px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.hero-kicker {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-kicker::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--red);
+}
+.hero-headline {
+  font-family: var(--head);
+  font-size: clamp(72px, 8vw, 120px);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.hero-headline em { color: var(--red); font-style: normal; }
+.hero-subhead {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  border-left: 3px solid var(--red);
+  padding-left: 20px;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: auto;
+  border-top: 1px solid var(--rule);
+  padding-top: 28px;
+}
+.stat { padding-right: 24px; border-right: 1px solid var(--rule); }
+.stat:last-child { border-right: none; padding-left: 24px; padding-right: 0; }
+.stat:nth-child(2) { padding-left: 24px; padding-right: 24px; }
+.stat-number { font-family: var(--head); font-size: 3.2rem; line-height: 1; color: var(--ink); }
+.stat-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.hero-right { padding-left: 48px; display: flex; flex-direction: column; gap: 24px; }
+.hero-pull { background: var(--ink); color: var(--paper); padding: 28px 24px; }
+.hero-pull-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.hero-pull-quote { font-family: var(--serif); font-size: 1.05rem; font-style: italic; line-height: 1.55; color: rgba(244,240,232,0.9); }
+.hero-pull-source { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(244,240,232,0.4); text-transform: uppercase; margin-top: 14px; }
+.hero-side-note { border: 1px solid var(--rule); padding: 20px; background: var(--paper2); }
+.hero-side-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+.hero-side-text { font-family: var(--body); font-size: 0.88rem; color: var(--ink); line-height: 1.6; }
+.hero-cta-block { display: flex; flex-direction: column; gap: 10px; }
+.btn-primary {
+  display: block;
+  text-align: center;
+  font-family: var(--cond);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--red);
+  color: var(--paper);
+  padding: 18px 28px;
+  transition: background 0.15s;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+.btn-primary:hover { background: var(--red-dim); }
+.btn-secondary {
+  display: block;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--muted);
+  padding: 14px 28px;
+  border: 1px solid var(--rule);
+  transition: border-color 0.15s, color 0.15s;
+  cursor: pointer;
+}
+.btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ============================================================
+   SECTION LABEL
+============================================================ */
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+/* ============================================================
+   THE TRUTH SECTION
+============================================================ */
+.truth-section { background: var(--ink); color: var(--paper); padding: 80px 40px; }
+.truth-inner { max-width: 1400px; margin: 0 auto; }
+.truth-section .section-label { color: rgba(244,240,232,0.3); }
+.truth-section .section-label::after { background: rgba(244,240,232,0.1); }
+.truth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.06); }
+.truth-item { background: var(--ink); padding: 44px 48px; position: relative; overflow: hidden; }
+.truth-item::before { content: attr(data-num); font-family: var(--head); font-size: 8rem; color: rgba(255,255,255,0.04); position: absolute; top: -10px; right: 24px; line-height: 1; pointer-events: none; }
+.truth-item-head { font-family: var(--cond); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.truth-item-body { font-family: var(--body); font-size: 0.95rem; line-height: 1.7; color: rgba(244,240,232,0.7); max-width: 420px; }
+.truth-banner { margin-top: 2px; background: var(--red); padding: 36px 48px; display: flex; align-items: center; gap: 48px; }
+.truth-banner-quote { font-family: var(--serif); font-size: 1.7rem; font-style: italic; color: var(--paper); flex: 1; line-height: 1.4; }
+.truth-banner-stat { flex-shrink: 0; text-align: center; }
+.truth-banner-stat-num { font-family: var(--head); font-size: 4rem; color: var(--paper); line-height: 1; }
+.truth-banner-stat-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,240,232,0.65); max-width: 120px; margin-top: 6px; line-height: 1.4; }
+
+/* ============================================================
+   HOW IT WORKS
+============================================================ */
+.process-section { padding: 80px 40px; max-width: 1400px; margin: 0 auto; }
+.process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--rule); }
+.process-step { padding: 44px 40px; border-right: 1px solid var(--rule); position: relative; }
+.process-step:last-child { border-right: none; }
+.process-num { font-family: var(--head); font-size: 5rem; color: var(--paper3); line-height: 1; margin-bottom: 16px; }
+.process-tag { display: inline-block; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); background: var(--red); padding: 4px 10px; margin-bottom: 14px; }
+.process-step-head { font-family: var(--cond); font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 12px; line-height: 1.1; }
+.process-step-body { font-family: var(--body); font-size: 0.88rem; line-height: 1.7; color: var(--muted); }
+.process-step-price { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+.process-step-price strong { font-size: 1.4rem; font-family: var(--head); display: block; color: var(--ink); margin-top: 2px; letter-spacing: 0.03em; }
+.process-total { margin-top: -1px; border: 1px solid var(--rule); padding: 32px 40px; background: var(--paper2); display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.process-total-text { font-family: var(--body); font-style: italic; font-size: 1rem; color: var(--muted); max-width: 600px; line-height: 1.6; }
+.process-total-price { text-align: right; flex-shrink: 0; }
+.process-total-price-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.process-total-price-num { font-family: var(--head); font-size: 3.5rem; color: var(--ink); line-height: 1; }
+.process-total-price-sub { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+
+/* ============================================================
+   EXAMPLES
+============================================================ */
+.examples-section { background: var(--paper2); padding: 80px 40px; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.examples-inner { max-width: 1400px; margin: 0 auto; }
+.examples-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 60px; align-items: end; }
+.examples-headline { font-family: var(--head); font-size: clamp(48px, 5vw, 72px); line-height: 0.9; color: var(--ink); }
+.examples-body { font-family: var(--body); font-size: 0.95rem; line-height: 1.7; color: var(--muted); border-left: 3px solid var(--red); padding-left: 20px; }
+.examples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.browser-mock { background: #fff; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.08); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+.browser-mock:hover { transform: translateY(-6px); box-shadow: 0 32px 80px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.1); }
+.browser-chrome { background: #2C2C2E; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+.browser-dots { display: flex; gap: 5px; }
+.browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+.browser-dot:nth-child(1) { background: #FF5F57; }
+.browser-dot:nth-child(2) { background: #FEBC2E; }
+.browser-dot:nth-child(3) { background: #28C840; }
+.browser-url { flex: 1; background: rgba(255,255,255,0.1); border-radius: 4px; padding: 4px 12px; font-family: var(--mono); font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+.browser-content { height: 280px; overflow: hidden; position: relative; }
+.browser-fallback { width: 100%; height: 100%; position: absolute; inset: 0; display: flex; flex-direction: column; }
+.browser-fallback-header { flex: 0 0 48px; display: flex; align-items: center; padding: 0 20px; gap: 16px; }
+.browser-fallback-body { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.mock-line { height: 12px; border-radius: 2px; background: rgba(0,0,0,0.1); }
+.mock-line.short { width: 40%; }
+.mock-line.med { width: 65%; }
+.mock-line.long { width: 85%; }
+.mock-block { height: 60px; border-radius: 4px; margin-top: 8px; }
+.v1-title { font-family: var(--head); font-size: 1rem; color: #F5C842; letter-spacing: 0.05em; }
+.v1-big { font-family: var(--head); font-size: 2.2rem; color: #1A1A1A; line-height: 1; margin-bottom: 4px; }
+.v2-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; color: #7B92FF; letter-spacing: 0.14em; text-transform: uppercase; }
+.v2-big { font-family: var(--head); font-size: 2rem; color: #F0EEF8; line-height: 1; letter-spacing: 0.02em; }
+.v2-sub { font-family: var(--mono); font-size: 0.6rem; color: #4F6EF7; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+.v3-card { background: #FFFFF0; border: 1px solid rgba(0,0,0,0.1); box-shadow: 2px 2px 8px rgba(0,0,0,0.2); padding: 12px 14px; transform: rotate(-1.5deg); position: relative; }
+.v3-card::before { content: ''; width: 14px; height: 14px; border-radius: 50%; background: #D94F3D; position: absolute; top: -7px; left: 50%; transform: translateX(-50%); box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+.v3-tag { display: inline-block; background: #F5C842; padding: 6px 12px; font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; transform: rotate(2deg); margin-top: 8px; }
+.v4-big { font-family: var(--head); font-size: 2.2rem; color: #0A0A0A; line-height: 0.95; margin-bottom: 8px; }
+.v4-accent { width: 40px; height: 4px; background: #C13A1F; margin-bottom: 12px; }
+.v4-chip { display: inline-block; border: 1.5px solid #0A0A0A; padding: 3px 10px; font-family: var(--mono); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: #0A0A0A; margin-right: 4px; }
+.example-caption { padding: 16px 20px; border-top: 1px solid rgba(0,0,0,0.07); display: flex; align-items: center; justify-content: space-between; background: #fff; }
+.example-caption-name { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #666; }
+.example-caption-style { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); background: rgba(193,58,31,0.08); padding: 3px 9px; border-radius: 2px; }
+
+/* ============================================================
+   DELIVERABLES
+============================================================ */
+.deliverables-section { padding: 80px 40px; max-width: 1400px; margin: 0 auto; }
+.deliverables-grid { display: grid; grid-template-columns: 320px 1fr; gap: 0; border: 1px solid var(--rule); }
+.deliverables-aside { background: var(--ink); color: var(--paper); padding: 48px 40px; display: flex; flex-direction: column; justify-content: space-between; }
+.deliverables-aside-head { font-family: var(--head); font-size: 3.2rem; line-height: 0.9; margin-bottom: 20px; }
+.deliverables-aside-body { font-family: var(--body); font-size: 0.88rem; font-style: italic; color: rgba(244,240,232,0.6); line-height: 1.7; }
+.deliverables-aside-price { margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.12); }
+.deliverables-aside-price-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,240,232,0.4); margin-bottom: 4px; }
+.deliverables-aside-price-num { font-family: var(--head); font-size: 4rem; color: var(--gold); line-height: 1; }
+.deliverables-aside-price-sub { font-family: var(--mono); font-size: 0.58rem; color: rgba(244,240,232,0.35); letter-spacing: 0.1em; margin-top: 4px; }
+.deliverables-list { padding: 0; display: flex; flex-direction: column; }
+.deliverable-item { padding: 28px 40px; border-bottom: 1px solid var(--rule); display: flex; align-items: flex-start; gap: 24px; }
+.deliverable-item:last-child { border-bottom: none; }
+.deliverable-icon { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); background: rgba(193,58,31,0.08); padding: 6px 12px; flex-shrink: 0; margin-top: 2px; }
+.deliverable-head { font-family: var(--cond); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); margin-bottom: 6px; }
+.deliverable-body { font-family: var(--body); font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+.testimonial-strip { background: var(--red); padding: 60px 40px; }
+.testimonial-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+.testimonial-item { border-top: 2px solid rgba(255,255,255,0.3); padding-top: 24px; }
+.testimonial-quote { font-family: var(--serif); font-size: 1rem; font-style: italic; color: rgba(255,255,255,0.9); line-height: 1.6; margin-bottom: 16px; }
+.testimonial-source { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+
+/* ============================================================
+   FAQ
+============================================================ */
+.notes-section { padding: 80px 40px; background: var(--paper2); }
+.notes-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start; }
+.notes-intro-head { font-family: var(--head); font-size: 3.2rem; line-height: 0.9; margin-bottom: 16px; }
+.notes-intro-head em { color: var(--red); font-style: normal; }
+.notes-intro-body { font-family: var(--body); font-style: italic; font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+.notes-list { display: flex; flex-direction: column; gap: 0; }
+.note-item { padding: 28px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; }
+.note-item:first-child { border-top: 1px solid var(--rule); }
+.note-q { font-family: var(--cond); font-size: 1rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); line-height: 1.3; }
+.note-a { font-family: var(--body); font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+.note-a strong { color: var(--ink); font-style: italic; font-weight: 400; }
+
+/* ============================================================
+   CTA SECTION
+============================================================ */
+.cta-section { background: var(--ink); padding: 100px 40px; text-align: center; position: relative; overflow: hidden; }
+.cta-bg-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; overflow: hidden; }
+.cta-bg-text span { font-family: var(--head); font-size: 30vw; color: rgba(255,255,255,0.03); white-space: nowrap; letter-spacing: -0.02em; }
+.cta-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+.cta-kicker { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+.cta-headline { font-family: var(--head); font-size: clamp(56px, 6vw, 88px); line-height: 0.9; color: var(--paper); margin-bottom: 24px; }
+.cta-headline em { color: var(--red); font-style: normal; }
+.cta-body { font-family: var(--body); font-style: italic; font-size: 1rem; color: rgba(244,240,232,0.6); line-height: 1.65; margin-bottom: 44px; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; }
+.cta-btns .btn-primary { padding: 18px 40px; font-size: 1rem; width: auto; }
+.cta-btns .btn-secondary { padding: 18px 32px; border-color: rgba(244,240,232,0.2); color: rgba(244,240,232,0.5); }
+.cta-btns .btn-secondary:hover { border-color: rgba(244,240,232,0.5); color: rgba(244,240,232,0.8); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 32px 40px; }
+footer .footer-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.footer-logo { font-family: var(--head); font-size: 1.3rem; letter-spacing: 0.04em; color: rgba(244,240,232,0.4); }
+.footer-logo span { color: var(--red); }
+.footer-copy { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,240,232,0.25); }
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,240,232,0.3); transition: color 0.15s; }
+.footer-links a:hover { color: rgba(244,240,232,0.6); }
+
+/* ============================================================
+   SCROLL ANIMATIONS
+============================================================ */
+/* reveal: always visible by default; JS upgrades to animated entrance */
+.reveal { transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.animate-ready { opacity: 0; transform: translateY(22px); }
+.reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { border-right: none; padding-right: 0; padding-bottom: 48px; border-bottom: 1px solid var(--rule); }
+  .hero-right { padding-left: 0; padding-top: 48px; }
+  .truth-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { border-right: none; border-bottom: 1px solid var(--rule); }
+  .examples-grid { grid-template-columns: 1fr; }
+  .examples-header { grid-template-columns: 1fr; }
+  .deliverables-grid { grid-template-columns: 1fr; }
+  .testimonial-inner { grid-template-columns: 1fr; gap: 28px; }
+  .notes-inner { grid-template-columns: 1fr; gap: 40px; }
+  .note-item { grid-template-columns: 1fr; gap: 8px; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .masthead-nav { display: none; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================================
+   BOOKING MODAL OVERLAY
+============================================================ */
+/* ============================================================
+   BOOKING MODAL OVERLAY
+============================================================ */
+.booking-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,23,20,0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 8000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 32px 20px 60px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.booking-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+body.modal-open { overflow: hidden; }
+
+.booking-modal-wrap {
+  width: 100%;
+  max-width: 1020px;
+  position: relative;
+}
+.booking-modal-wrap.slide-in {
+  animation: modalSlideUp 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes modalSlideUp {
+  from { transform: translateY(28px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  color: var(--ink);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  transition: background 0.15s, transform 0.15s;
+  line-height: 1;
+}
+.modal-close-btn:hover { background: var(--paper2); transform: scale(1.08); }
+
+/* ── BOOKING MODAL INNER SHELL ── */
+.booking-modal-inner {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* ── MODAL TOP BAR ── */
+.modal-top-bar {
+  background: #1A1714;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #F4F0E8; letter-spacing: 0.04em; line-height: 1; }
+.modal-logo span { color: #C13A1F; }
+.modal-step-track { display: flex; gap: 6px; align-items: center; }
+.modal-step-pip { width: 28px; height: 3px; background: #7A7260; border-radius: 2px; transition: background 0.4s; }
+.modal-step-pip.active { background: #e0a80a; }
+.modal-step-pip.done { background: #C8960A; }
+
+
+
+
+:root {
+  --ink: #1A1714;
+  --parchment: #F4F0E8;
+  --cream: #EDE8DC;
+  --gold: #C8960A;
+  --gold-light: #e0a80a;
+  --gold-pale: #f5edd0;
+  --red: #C13A1F;
+  --red-dim: #8C2A16;
+  --muted: #7A7260;
+  --border: rgba(26,23,20,0.15);
+  --white: #ffffff;
+  --step-inactive: #c8bfaf;
+  --radius: 2px;
+  --priority: #8b1a1a;
+  --priority-pale: #fdf2f0;
+  --priority-border: #e8bfbb;
+  --font-head: 'Bebas Neue', sans-serif;
+  --font-cond: 'Barlow Condensed', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-serif: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+}
+
+
+
+/* ── CONFIG BANNER ── */
+
+
+
+
+/* ── LAYOUT ── */
+
+.top-bar { background: var(--ink); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
+.logo-mark { font-family: var(--font-head); font-size: 1.6rem; color: var(--parchment); letter-spacing: 0.04em; line-height: 1; }
+.logo-mark span { color: var(--red); }
+
+.step-track { display: flex; gap: 6px; align-items: center; }
+.step-pip { width: 28px; height: 3px; background: var(--muted); border-radius: 2px; transition: background 0.4s; }
+.step-pip.active { background: var(--gold-light); }
+.step-pip.done { background: var(--gold); }
+
+
+
+/* ── CARD ── */
+.booking-card { width: 100%; max-width: 960px; background: var(--white); border: 1px solid var(--border); box-shadow: 0 4px 32px rgba(28,25,23,0.08); display: flex; min-height: 600px; overflow: hidden; }
+
+/* ── LEFT PANEL ── */
+.left-panel { width: 280px; min-width: 280px; background: var(--ink); padding: 40px 32px; display: flex; flex-direction: column; gap: 20px; position: relative; overflow: hidden; }
+.left-panel::before { content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(184,145,74,0.12) 0%, transparent 70%); }
+.left-panel::after { content: '§'; position: absolute; bottom: 16px; right: 20px; font-size: 7rem; color: rgba(184,145,74,0.06); font-family: var(--font-serif); line-height: 1; }
+
+.panel-eyebrow { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+.panel-title { font-family: var(--font-head); font-size: 2.2rem; line-height: 1.05; color: var(--parchment); font-weight: 400; letter-spacing: 0.02em; }
+.panel-desc { font-size: 0.8rem; color: var(--step-inactive); line-height: 1.75; }
+
+.panel-meta { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+.meta-row { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--step-inactive); }
+.meta-icon { width: 15px; height: 15px; opacity: 0.55; flex-shrink: 0; }
+
+.selection-summary { background: rgba(184,145,74,0.12); border: 1px solid rgba(184,145,74,0.25); border-radius: var(--radius); padding: 13px 15px; display: flex; flex-direction: column; gap: 5px; }
+.sum-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.sum-value { font-size: 0.8rem; color: var(--parchment); line-height: 1.4; }
+
+.priority-badge-panel { background: rgba(139,26,26,0.25); border: 1px solid rgba(139,26,26,0.45); border-radius: var(--radius); padding: 10px 14px; display: none; }
+.priority-badge-panel.on { display: flex; align-items: center; gap: 8px; }
+.priority-badge-panel span { font-size: 0.75rem; color: #f5c0bb; font-style: italic; }
+
+/* ── RIGHT PANEL ── */
+.right-panel { flex: 1; padding: 40px; overflow-y: auto; }
+
+/* ── STEP SYSTEM ── */
+.step { display: none; animation: stepIn 0.32s ease; }
+.step.active { display: block; }
+@keyframes stepIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+
+.step-heading { font-family: var(--font-head); font-size: 1.8rem; font-weight: 400; color: var(--ink); margin-bottom: 5px; letter-spacing: 0.02em; }
+.step-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 26px; }
+
+/* ── PACKAGES ── */
+.packages-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+
+.pkg-card { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 18px 20px; cursor: pointer; transition: all 0.18s; position: relative; background: var(--white); }
+.pkg-card:hover { border-color: var(--gold); background: var(--cream); }
+.pkg-card.selected { border-color: var(--gold); background: var(--gold-pale); }
+.pkg-card.selected .pkg-check { opacity: 1; }
+
+.pkg-check { position: absolute; top: 16px; right: 16px; width: 20px; height: 20px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+.pkg-check svg { width: 10px; height: 10px; stroke: white; stroke-width: 2.5; fill: none; }
+
+.pkg-name { font-family: var(--font-head); font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 2px; letter-spacing: 0.02em; }
+.pkg-tagline { font-size: 0.76rem; color: var(--muted); font-style: italic; margin-bottom: 9px; }
+.pkg-features { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+.pkg-tag { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.05em; background: var(--parchment); border: 1px solid var(--border); color: var(--muted); padding: 2px 7px; border-radius: 20px; }
+.pkg-price { position: absolute; bottom: 16px; right: 16px; font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; color: var(--gold); }
+
+/* PRIORITY EDITION TOGGLE */
+.priority-toggle-wrap { border: 1.5px solid var(--priority-border); border-radius: var(--radius); background: var(--priority-pale); padding: 18px 20px; margin-top: 4px; transition: opacity 0.2s, filter 0.2s; }
+.priority-toggle-wrap.locked { opacity: 0.45; filter: grayscale(0.4); cursor: not-allowed; }
+.priority-toggle-wrap.locked .priority-header { cursor: not-allowed; pointer-events: none; }
+.priority-toggle-wrap.locked .toggle-switch { pointer-events: none; }
+.priority-lock-hint { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--muted); text-align: center; margin-top: 10px; display: none; }
+.priority-toggle-wrap.locked + .priority-lock-hint { display: block; }
+.priority-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; cursor: pointer; }
+.priority-left { flex: 1; }
+.priority-tag { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--priority); margin-bottom: 4px; }
+.priority-name { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--ink); }
+.priority-tagline { font-size: 0.75rem; color: var(--muted); font-style: italic; margin-top: 2px; }
+.priority-price { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 600; color: var(--priority); text-align: right; flex-shrink: 0; }
+.priority-price small { display: block; font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.toggle-switch { position: relative; width: 42px; height: 24px; flex-shrink: 0; margin-top: 2px; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: background 0.2s; }
+.toggle-slider::before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: transform 0.2s; }
+input:checked + .toggle-slider { background: var(--priority); }
+input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+.priority-features { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+.priority-tag-item { font-family: var(--font-mono); font-size: 0.6rem; background: rgba(139,26,26,0.08); border: 1px solid var(--priority-border); color: var(--priority); padding: 2px 8px; border-radius: 20px; }
+
+/* ── CALENDAR ── */
+.platform-tabs { display: flex; gap: 7px; margin-bottom: 16px; flex-wrap: wrap; }
+.platform-tab { display: flex; align-items: center; gap: 6px; padding: 6px 13px; border: 1.5px solid var(--border); border-radius: 20px; cursor: pointer; font-size: 0.72rem; font-family: var(--font-mono); color: var(--muted); transition: all 0.15s; background: var(--white); }
+.platform-tab:hover { border-color: var(--gold); color: var(--ink); }
+.platform-tab.active { border-color: var(--gold); background: var(--gold-pale); color: var(--ink); }
+.platform-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+.notice { background: var(--gold-pale); border-left: 3px solid var(--gold); padding: 9px 13px; font-size: 0.74rem; color: var(--muted); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 18px; line-height: 1.55; }
+.notice.loading { background: #f0f4ff; border-left-color: #4285F4; }
+.notice.error { background: #fff0f0; border-left-color: #d32f2f; }
+
+.cal-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.cal-month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.cal-month-label { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; }
+.nav-btn { background: none; border: 1px solid var(--border); border-radius: var(--radius); width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--ink); transition: all 0.15s; }
+.nav-btn:hover { background: var(--parchment); border-color: var(--gold); }
+
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.cal-dow { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: center; padding-bottom: 5px; }
+.cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; border-radius: var(--radius); cursor: pointer; transition: all 0.12s; border: 1px solid transparent; }
+.cal-day:hover:not(.disabled):not(.empty):not(.selected) { background: var(--gold-pale); border-color: var(--gold); }
+.cal-day.selected { background: #1A1714 !important; color: #F4F0E8 !important; border-color: #1A1714 !important; font-weight: 700; }
+.cal-day.today { color: var(--ink); }
+.cal-day.disabled { color: var(--step-inactive); cursor: default; opacity: 0.4; }
+.cal-day.available { background: transparent; }
+.cal-day.loading-day { background: linear-gradient(90deg, #f0ebe0 25%, #e5dfd2 50%, #f0ebe0 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; cursor: default; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.cal-day.empty { cursor: default; }
+
+.slots-heading { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.slots-list { display: flex; flex-direction: column; gap: 7px; max-height: 340px; overflow-y: auto; padding-right: 3px; }
+.slots-list::-webkit-scrollbar { width: 3px; }
+.slots-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.slot-btn { width: 100%; padding: 9px 13px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); font-family: 'Libre Baskerville', serif; font-size: 0.78rem; color: var(--ink); cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between; transition: all 0.12s; }
+.slot-btn:hover { border-color: var(--gold); background: var(--cream); }
+.slot-btn.selected { border-color: var(--gold); background: var(--gold-pale); font-weight: 700; }
+.slot-tz { font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted); }
+.no-date-msg { font-size: 0.8rem; color: var(--muted); font-style: italic; text-align: center; padding: 28px 0; }
+
+/* ── INTAKE ── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.form-label .req { color: var(--gold); }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: 'Libre Baskerville', serif; font-size: 0.8rem; color: var(--ink); background: var(--white); transition: border-color 0.15s; outline: none; appearance: none; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+.form-textarea { resize: vertical; min-height: 85px; }
+
+.upload-zone { border: 2px dashed var(--border); border-radius: var(--radius); padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--cream); position: relative; }
+.upload-zone:hover, .upload-zone.drag-over { border-color: var(--gold); background: var(--gold-pale); }
+.upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.upload-icon { font-size: 1.4rem; margin-bottom: 5px; }
+.upload-text { font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
+.upload-text strong { color: var(--ink); }
+.upload-filename { margin-top: 7px; font-family: var(--font-mono); font-size: 0.63rem; color: var(--gold); }
+.linkedin-row { display: flex; }
+.linkedin-prefix { padding: 9px 11px; background: var(--parchment); border: 1.5px solid var(--border); border-right: none; border-radius: var(--radius) 0 0 var(--radius); font-family: var(--font-mono); font-size: 0.63rem; color: var(--muted); display: flex; align-items: center; white-space: nowrap; }
+.linkedin-input { flex: 1; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 0 var(--radius) var(--radius) 0; font-family: 'Libre Baskerville', serif; font-size: 0.8rem; color: var(--ink); background: var(--white); outline: none; }
+.linkedin-input:focus { border-color: var(--gold); }
+
+/* ── CONFIRMATION ── */
+.confirm-hero { text-align: center; padding: 16px 0 26px; }
+.confirm-icon { width: 58px; height: 58px; background: var(--gold-pale); border: 2px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.4rem; }
+.confirm-title { font-family: var(--font-serif); font-size: 1.55rem; font-style: italic; color: var(--ink); margin-bottom: 6px; }
+.confirm-sub { font-size: 0.8rem; color: var(--muted); max-width: 380px; margin: 0 auto; line-height: 1.75; }
+.confirm-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+.confirm-block { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.confirm-block-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+.confirm-block-value { font-size: 0.85rem; color: var(--ink); font-weight: 700; font-family: var(--font-serif); }
+
+/* ── WHAT'S NEXT ── */
+.whats-next { margin-top: 30px; padding-top: 28px; border-top: 1px solid var(--border); }
+.wn-heading { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.wn-sub { font-size: 0.76rem; color: var(--muted); margin-bottom: 20px; line-height: 1.65; }
+
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item { display: flex; gap: 16px; position: relative; padding-bottom: 22px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item:last-child .tl-line { display: none; }
+
+.tl-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.tl-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.62rem; font-weight: 400; flex-shrink: 0; }
+.tl-dot.now { background: var(--gold); color: white; }
+.tl-dot.upcoming { background: var(--parchment); border: 1.5px solid var(--border); color: var(--muted); }
+.tl-dot.session { background: var(--ink); color: var(--parchment); }
+.tl-line { width: 1px; flex: 1; background: var(--border); margin-top: 4px; margin-bottom: -4px; }
+
+.tl-body { flex: 1; padding-top: 4px; }
+.tl-when { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+.tl-when.priority-when { color: var(--priority); }
+.tl-title { font-family: var(--font-serif); font-size: 0.92rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.tl-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.65; }
+
+/* ── ADD TO CALENDAR ── */
+.add-to-cal-row { display: flex; gap: 9px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+.add-cal-btn { padding: 8px 16px; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--white); font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.07em; cursor: pointer; color: var(--ink); transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
+.add-cal-btn:hover { border-color: var(--gold); background: var(--gold-pale); }
+
+/* ── BUTTONS ── */
+.btn-row { display: flex; justify-content: space-between; align-items: center; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--border); }
+.btn { display: inline-flex; align-items: center; gap: 7px; padding: 10px 20px; border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.18s; border: none; outline: none; }
+.btn-primary { background: var(--ink); color: var(--parchment); }
+.btn-primary:hover { background: #2d2925; }
+.btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--ink); }
+.btn-gold { background: var(--gold); color: var(--white); }
+.btn-gold:hover { background: var(--gold-light); }
+.btn-gold:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── EMAIL STATUS ── */
+.email-status { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); text-align: center; margin-top: 10px; min-height: 18px; }
+.email-status.sent { color: #2e7d32; }
+.email-status.error { color: #c62828; }
+
+/* ── PERSONALIZED CLIENT NOTE ── */
+.client-note-panel {
+  margin-top: 20px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.client-note-header {
+  background: var(--cream);
+  padding: 11px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.client-note-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.client-note-body {
+  padding: 18px 20px;
+  background: var(--white);
+  min-height: 60px;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-style: italic;
+}
+.client-note-body.streaming::after {
+  content: '▋';
+  display: inline-block;
+  animation: blink 0.7s step-end infinite;
+  color: var(--gold);
+  margin-left: 1px;
+  font-style: normal;
+}
+.client-note-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: normal;
+}
+.client-note-spinner {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+.ai-draft-panel {
+  margin-top: 28px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ai-draft-header {
+  background: var(--ink);
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ai-draft-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ai-draft-title {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  color: var(--parchment);
+  margin-top: 1px;
+}
+
+.ai-draft-badge {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.ai-draft-badge.generating {
+  background: rgba(184,145,74,0.2);
+  color: var(--gold-light);
+  border: 1px solid rgba(184,145,74,0.35);
+  animation: pulse-badge 1.4s ease-in-out infinite;
+}
+
+.ai-draft-badge.done {
+  background: rgba(46,125,50,0.15);
+  color: #81c784;
+  border: 1px solid rgba(46,125,50,0.3);
+}
+
+.ai-draft-badge.error {
+  background: rgba(198,40,40,0.12);
+  color: #ef9a9a;
+  border: 1px solid rgba(198,40,40,0.25);
+}
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.ai-draft-private {
+  background: rgba(184,145,74,0.08);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.ai-draft-body {
+  padding: 20px 22px;
+  background: var(--cream);
+  min-height: 120px;
+  max-height: 520px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.ai-draft-body::-webkit-scrollbar { width: 4px; }
+.ai-draft-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.ai-draft-text {
+  font-size: 0.82rem;
+  line-height: 1.85;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+
+.ai-draft-text.streaming::after {
+  content: '▋';
+  display: inline-block;
+  animation: blink 0.7s step-end infinite;
+  color: var(--gold);
+  margin-left: 1px;
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.ai-draft-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 0;
+  color: var(--muted);
+}
+
+.ai-spinner {
+  width: 28px; height: 28px;
+  border: 2px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.ai-placeholder-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--step-inactive);
+}
+
+.ai-draft-footer {
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ai-draft-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: var(--ink);
+  color: var(--parchment);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ai-draft-copy-btn:hover { background: #2d2925; }
+.ai-draft-copy-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ai-word-count {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--step-inactive);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 720px) {
+  .booking-card { flex-direction: column; }
+  .left-panel { width: 100%; min-width: unset; }
+  .cal-layout { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .confirm-details { grid-column: 1 / -1; }
+  .booking-modal-wrap { padding: 16px 12px 40px; }
+}
+
+
+</style></style>
+<meta property="og:title" content="Career Story — The Site That Gets You The Interview" data-id="th-modified" ><meta name="description" content="careerstory-combined (4)" data-id="th-modified" ><meta property="og:description" content="careerstory-combined (4)" data-id="th-modified" ><meta property="og:image" content="https://tiiny.host/assets/logo-purple-bg.png" data-id="th-modified" ><meta property="og:url" content="https://careerstory-mainandscheduler.tiiny.site/" data-id="th-modified" ><meta property="og:type" content="website" data-id="th-modified" ><script defer data-domain="careerstory-mainandscheduler.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
 <body>
-<div class="page">
 
-  <div class="masthead">
-    <div class="eyebrow">Personal Loan Agreement</div>
-    <h1>Gardner &amp; Belohlavy</h1>
-    <p>Kansas City, Missouri · April 2026</p>
+<!-- ════════════════════════════════════════════════
+     SERVICE PAGE
+════════════════════════════════════════════════ -->
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-logo">Career<span>Story</span></div>
+    <nav>
+      <ul class="masthead-nav">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <button onclick="openBookingModal()" class="masthead-cta">Start Your Story →</button>
   </div>
+</header>
 
-  <div class="progress">
-    <div class="step" id="s1"></div>
-    <div class="step" id="s2"></div>
-    <div class="step" id="s3"></div>
+<div class="dateline">
+  <div class="dateline-inner">
+    <div class="dateline-item">Career Story Co. — Kansas City</div>
+    <div class="dateline-item">Story · Website · Hosting</div>
+    <div class="dateline-item">The site that gets you the interview</div>
+    <div class="dateline-item">$1,000 complete · $20/mo to stay live</div>
   </div>
-
-  <div id="app"></div>
-
 </div>
 
-<script>
-// ─── EMAILJS CONFIG ────────────────────────────────────────────────────
-// 1. Sign up free at https://www.emailjs.com
-// 2. Add Gmail as a service → copy the Service ID
-// 3. Create a template (see SETUP.md) → copy the Template ID
-// 4. Go to Account → copy your Public Key
-// Paste all three values below:
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-kicker">The Insider's Take on Modern Job Searching</div>
+    <h1 class="hero-headline">YOUR RESUME<br>IS NOT<br><em>ENOUGH.</em></h1>
+    <p class="hero-subhead">Hiring managers Google you before they call you. What they find — or don't — determines whether you get the interview. We build the site that makes them pick up the phone.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">56%</div>
+        <div class="stat-label">Of hiring managers are most impressed by a personal website</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">7%</div>
+        <div class="stat-label">Of job seekers actually have one. That gap is your advantage.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">93%</div>
+        <div class="stat-label">Of your competition is showing up with just a PDF and a prayer</div>
+      </div>
+    </div>
+  </div>
 
-const EMAILJS_PUBLIC_KEY  = '22zJDJf7u6XIqLjDS';
-const EMAILJS_SERVICE_ID  = 'service_rkmhdri';
-const EMAILJS_TEMPLATE_ID = 'template_yy27da8';
-// ──────────────────────────────────────────────────────────────────────
+  <div class="hero-right">
+    <div class="hero-pull">
+      <div class="hero-pull-label">Field Report</div>
+      <p class="hero-pull-quote">"I've been on hiring committees. We absolutely look people up. A great personal website tells me you're serious, self-aware, and at least ten years ahead of whoever's next in the stack."</p>
+      <div class="hero-pull-source">— A hiring manager who preferred we not use their name</div>
+    </div>
+    <div class="hero-side-note">
+      <div class="hero-side-label">What This Is Not</div>
+      <p class="hero-side-text">Not a Wix template. Not a LinkedIn PDF export. Not a resume with a background image. Not a chatbot prompt called done. This is a <em>crafted narrative</em> — human-driven, AI-assisted, built by someone who understands both storytelling and design.</p>
+    </div>
+    <div class="hero-cta-block">
+      <button onclick="openBookingModal()" class="btn-primary">Get Started — $1,000 Complete Package</button>
+      <a href="#examples" class="btn-secondary">See Example Sites First</a>
+    </div>
+  </div>
+</section>
 
-emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+<section class="truth-section">
+  <div class="truth-inner">
+    <div class="section-label">What's Actually Happening Out There</div>
+    <div class="truth-grid">
+      <div class="truth-item reveal" data-num="01">
+        <div class="truth-item-head">The Stack Gets Filtered in 6 Seconds</div>
+        <p class="truth-item-body">Before a human reads your resume, software has already eliminated 75% of the pile. The candidates who survive aren't necessarily the most qualified — they're the ones who made themselves findable, credible, and undeniable across every touchpoint.</p>
+      </div>
+      <div class="truth-item reveal reveal-delay-1" data-num="02">
+        <div class="truth-item-head">Google Is Part of the Interview</div>
+        <p class="truth-item-body">The first thing anyone does after seeing your resume is Google your name. What comes up? Your LinkedIn (which looks like everyone else's). Maybe an old photo. A career website built to tell your story changes what they find — and how they feel when they find it.</p>
+      </div>
+      <div class="truth-item reveal reveal-delay-2" data-num="03">
+        <div class="truth-item-head">Credentials Alone Are Table Stakes</div>
+        <p class="truth-item-body">Everyone in your candidate pool has a degree and a list of jobs. The question isn't what you've done — it's how compellingly you can make a hiring manager care about it. That's a writing problem. And most people are terrible at writing about themselves.</p>
+      </div>
+      <div class="truth-item reveal reveal-delay-3" data-num="04">
+        <div class="truth-item-head">The Narrative Gap Is Real and Exploitable</div>
+        <p class="truth-item-body">You have a story. You just haven't told it properly. There's almost always a through-line in a career that, once identified and articulated, makes someone go from "qualified applicant" to "the obvious choice." We find that thread. We pull it.</p>
+      </div>
+    </div>
+    <div class="truth-banner">
+      <p class="truth-banner-quote">"A hiring manager told us she decided to interview a candidate before the call — based solely on the personal website. The resume was the formality."</p>
+      <div class="truth-banner-stat">
+        <div class="truth-banner-stat-num">4×</div>
+        <div class="truth-banner-stat-label">More likely to get a callback with a strong personal web presence</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-const TERMS = {
-  lenderName:    'Justin Gardner',
-  lenderEmail:   'justinpgardner@gmail.com',
-  borrowerName:  'Sarah Belohlavy',
-  borrowerEmail: 'sarah.beloh@gmail.com',
-  loanAmount:    '$1,600.00',
-  startDate:     'April 11, 2026',
-  gracePeriodEnd:'July 10, 2026',
-  hardDeadline:  'August 20, 2026',
-  interestRate:  '10% per calendar month',
-  purpose:       'Rental deposit and first month\u2019s rent'
+<section class="process-section" id="how-it-works">
+  <div class="section-label">How It Works</div>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <div class="process-tag">The Foundation</div>
+      <h3 class="process-step-head">45-Min Discovery Call</h3>
+      <p class="process-step-body">We ask the questions that surface the stuff you've forgotten to mention — the moments, the pivots, the wins that define your trajectory. This is where the story lives.</p>
+      <div class="process-step-price">Included<strong>$0</strong></div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <div class="process-tag">The Story</div>
+      <h3 class="process-step-head">Full Career Narrative</h3>
+      <p class="process-step-body">1,200–1,800 words, human-led by editors who've run real editorial operations. AI assists our research and drafting process — a human shapes, refines, and owns every word. Five-chapter structure. One round of revisions included.</p>
+      <div class="process-step-price">Story<strong>$500</strong></div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <div class="process-tag">The Site</div>
+      <h3 class="process-step-head">Custom Career Website</h3>
+      <p class="process-step-body">Fully coded, not templated. Story sections, timeline, key stats, testimonials, and contact. Mobile-first. Fast. Yours — we hand you the HTML if you ever leave. Plus custom domain + email setup.</p>
+      <div class="process-step-price">Site + Domain<strong>$500</strong></div>
+    </div>
+  </div>
+  <div class="process-total" id="pricing">
+    <p class="process-total-text">Everything above — the intake call, the narrative, the site, and your first month live — for one flat price. No hourly. No surprise add-ons. Monthly hosting keeps it running and up-to-date for $20/month after that.</p>
+    <div class="process-total-price">
+      <div class="process-total-price-label">Complete Package</div>
+      <div class="process-total-price-num">$1,000</div>
+      <div class="process-total-price-sub">+ $20/month hosting</div>
+    </div>
+  </div>
+</section>
+
+<section class="examples-section" id="examples">
+  <div class="examples-inner">
+    <div class="examples-header reveal">
+      <h2 class="examples-headline">REAL<br>SITES.<br>REAL<br>PEOPLE.</h2>
+      <p class="examples-body">Every career has a different shape. Some are steady climbs. Some are pivots. Some are a 25-year obsession with one craft. The visual style we choose reflects the person — not a template off a shelf. Here are four different approaches we've built for the same individual, each with a completely distinct look and feel.</p>
+    </div>
+    <div class="examples-grid">
+      <div class="browser-mock reveal">
+        <div class="browser-chrome"><div class="browser-dots"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div></div><div class="browser-url">justingardner.com — Editorial</div></div>
+        <div class="browser-content">
+          <div class="browser-fallback v1-fallback">
+            <div class="browser-fallback-header" style="background:#0D0D0D;"><span class="v1-title">JUSTIN GARDNER</span></div>
+            <div class="browser-fallback-body" style="background:#F5F2EB;padding:24px 28px;">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:0.65rem;color:#D94F3D;letter-spacing:0.16em;margin-bottom:10px;">STORYTELLER · CONTENT PIONEER · 25 YEARS</div>
+              <div class="v1-big">YOUR RESUME<br>IS NOT<br>ENOUGH.</div>
+              <div style="height:2px;background:#D94F3D;width:60px;margin:12px 0;"></div>
+              <div class="mock-line long" style="height:10px;margin-bottom:6px;"></div>
+              <div class="mock-line med" style="height:10px;margin-bottom:6px;"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+                <div style="background:#1A1A1A;padding:12px;text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#F5C842;line-height:1;">2B+</div><div style="font-family:monospace;font-size:0.5rem;color:rgba(245,242,235,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;">Views</div></div>
+                <div style="background:#1A1A1A;padding:12px;text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#F5C842;line-height:1;">30M</div><div style="font-family:monospace;font-size:0.5rem;color:rgba(245,242,235,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;">Followers</div></div>
+                <div style="background:#D94F3D;padding:12px;text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#F5F2EB;line-height:1;">25</div><div style="font-family:monospace;font-size:0.5rem;color:rgba(245,242,235,0.6);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;">Years</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="example-caption"><span class="example-caption-name">Justin Gardner · V1</span><span class="example-caption-style">Editorial / Newspaper</span></div>
+      </div>
+
+      <div class="browser-mock reveal reveal-delay-1">
+        <div class="browser-chrome"><div class="browser-dots"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div></div><div class="browser-url">justingardner.com — Dark / Futuristic</div></div>
+        <div class="browser-content">
+          <div class="browser-fallback v2-fallback">
+            <div class="browser-fallback-header" style="background:#080810;"><span class="v2-title">JUSTIN GARDNER — EXECUTIVE</span></div>
+            <div class="browser-fallback-body" style="background:#0C0C18;padding:24px 28px;position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;background-image:linear-gradient(105deg,transparent 49.5%,rgba(79,110,247,0.04) 49.5%,rgba(79,110,247,0.04) 50.5%,transparent 50.5%);background-size:60px 60px;pointer-events:none;"></div>
+              <div class="v2-sub">Media Executive · Kansas City</div>
+              <div class="v2-big">OPERATOR.<br>PIONEER.<br>VISIONARY.</div>
+              <div style="height:1.5px;background:rgba(79,110,247,0.3);width:80px;margin:12px 0;"></div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+                <span style="font-family:monospace;font-size:0.5rem;color:#4F6EF7;background:rgba(79,110,247,0.1);border:1px solid rgba(79,110,247,0.2);padding:3px 8px;letter-spacing:0.08em;">JOURNALISM</span>
+                <span style="font-family:monospace;font-size:0.5rem;color:#3DFFA0;background:rgba(61,255,160,0.08);border:1px solid rgba(61,255,160,0.2);padding:3px 8px;letter-spacing:0.08em;">MEDIA</span>
+                <span style="font-family:monospace;font-size:0.5rem;color:#E8C96A;background:rgba(232,201,106,0.08);border:1px solid rgba(232,201,106,0.2);padding:3px 8px;letter-spacing:0.08em;">2B VIEWS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="example-caption"><span class="example-caption-name">Justin Gardner · V2</span><span class="example-caption-style">Dark / Futuristic</span></div>
+      </div>
+
+      <div class="browser-mock reveal reveal-delay-2">
+        <div class="browser-chrome"><div class="browser-dots"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div></div><div class="browser-url">justingardner.com — Corkboard</div></div>
+        <div class="browser-content">
+          <div class="browser-fallback">
+            <div class="browser-fallback-header" style="background:#8B6914;">
+              <span style="font-family:serif;font-size:0.85rem;color:#F5F0E8;">The Justin Gardner File</span>
+            </div>
+            <div class="browser-fallback-body" style="background:#8B6914;padding:20px 22px;display:flex;flex-wrap:wrap;gap:14px;align-content:flex-start;position:relative;">
+              <div class="v3-card" style="flex:0 0 auto;width:140px;transform:rotate(-2deg);">
+                <p style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:#D94F3D;margin-bottom:4px;">2 BILLION</p>
+                <p style="font-size:0.7rem;color:#333;font-family:serif;">video views produced.</p>
+                <div class="v3-tag">AMC · Everhance</div>
+              </div>
+              <div class="v3-card" style="flex:0 0 auto;width:130px;transform:rotate(1.5deg);margin-top:20px;">
+                <p style="font-size:0.72rem;color:#1A1A1A;font-family:serif;font-style:italic;">"Best in class. Full stop."</p>
+                <p style="font-family:monospace;font-size:0.55rem;color:#666;margin-top:6px;text-transform:uppercase;">— Former CIO, AMC</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="example-caption"><span class="example-caption-name">Justin Gardner · V3</span><span class="example-caption-style">Corkboard / Investigative</span></div>
+      </div>
+
+      <div class="browser-mock reveal reveal-delay-3">
+        <div class="browser-chrome"><div class="browser-dots"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div></div><div class="browser-url">justingardner.com — Clean / Modern</div></div>
+        <div class="browser-content">
+          <div class="browser-fallback">
+            <div class="browser-fallback-header" style="background:#0A0A0A;"><span style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;color:#F0F0F0;letter-spacing:0.08em;">JUSTIN.GARDNER</span></div>
+            <div class="browser-fallback-body" style="background:#F8F8F6;padding:24px 28px;">
+              <div style="font-family:monospace;font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:#C13A1F;margin-bottom:10px;">Kansas City · Est. 1976</div>
+              <div class="v4-big">JUSTIN<br>GARDNER</div>
+              <div class="v4-accent"></div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;"><span class="v4-chip">Journalist</span><span class="v4-chip">Copywriter</span><span class="v4-chip">Media Exec</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
+                <div style="border:1.5px solid #0A0A0A;padding:10px 12px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#0A0A0A;line-height:1;">30M+</div><div style="font-family:monospace;font-size:0.5rem;text-transform:uppercase;letter-spacing:0.08em;color:#666;margin-top:2px;">Followers</div></div>
+                <div style="background:#0A0A0A;padding:10px 12px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#C13A1F;line-height:1;">2B+</div><div style="font-family:monospace;font-size:0.5rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-top:2px;">Views</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="example-caption"><span class="example-caption-name">Justin Gardner · V4</span><span class="example-caption-style">Clean / Minimal</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="deliverables-section">
+  <div class="section-label">What You Actually Get</div>
+  <div class="deliverables-grid reveal">
+    <div class="deliverables-aside">
+      <div>
+        <div class="deliverables-aside-head">THE FULL PACKAGE</div>
+        <p class="deliverables-aside-body">We've been inside major media companies, ad agencies, and tech startups. We know what makes a hiring manager stop scrolling. Here's exactly what's in the box.</p>
+      </div>
+      <div class="deliverables-aside-price">
+        <div class="deliverables-aside-price-label">Total Investment</div>
+        <div class="deliverables-aside-price-num">$1,000</div>
+        <div class="deliverables-aside-price-sub">+ $20/month to stay live</div>
+      </div>
+    </div>
+    <div class="deliverables-list">
+      <div class="deliverable-item">
+        <div class="deliverable-icon">Story</div>
+        <div><div class="deliverable-head">45-Min Deep Intake Call</div><p class="deliverable-body">We ask the questions that surface the stuff you've forgotten to mention — the moments, the pivots, the wins that define your trajectory. This is where the story lives.</p></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">Story</div>
+        <div><div class="deliverable-head">Full Career Narrative (1,200–1,800 words)</div><p class="deliverable-body">Human-led by editors who've run real editorial operations. AI assists the research and drafting process — a human shapes, refines, and owns every word. Five to six chapter structure. One round of revisions included.</p></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">Site</div>
+        <div><div class="deliverable-head">Custom Single-Page Career Website</div><p class="deliverable-body">Fully coded, not templated. Story sections, timeline, key stats, testimonials, and contact. Mobile-first. Fast. Yours — we hand you the HTML if you ever leave.</p></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">Site</div>
+        <div><div class="deliverable-head">Custom Domain + Professional Email Setup</div><p class="deliverable-body">YourName.com or a variant. We register it, point it, and set up a matching email address you can actually put on a resume without looking like you made it in 2003.</p></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">Host</div>
+        <div><div class="deliverable-head">Managed Hosting — $20/Month</div><p class="deliverable-body">Fast CDN hosting, SSL certificate, uptime monitoring, and one content update per quarter. When you get promoted or pivot industries, we update the site. Cancel anytime.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-strip">
+  <div class="testimonial-inner">
+    <div class="testimonial-item reveal">
+      <p class="testimonial-quote">"I'd been job searching for three months and getting nowhere. Two weeks after the site went live, I had four interviews scheduled. One of them mentioned the website in the first five minutes of the call."</p>
+      <div class="testimonial-source">— Marketing Director, 12 years experience</div>
+    </div>
+    <div class="testimonial-item reveal reveal-delay-1">
+      <p class="testimonial-quote">"The intake call alone was worth it. They asked me questions about my career I'd never thought to ask myself. The story they wrote made me sound like the person I actually am, not the one I try to cram into a bullet point."</p>
+      <div class="testimonial-source">— VP of Content, tech company</div>
+    </div>
+    <div class="testimonial-item reveal reveal-delay-2">
+      <p class="testimonial-quote">"I sent the link instead of a cover letter. My now-employer told me it was the best application they'd ever received. I genuinely think the site is why I got the job."</p>
+      <div class="testimonial-source">— Senior Producer, media company</div>
+    </div>
+  </div>
+</section>
+
+<section class="notes-section" id="faq">
+  <div class="notes-inner">
+    <div>
+      <div class="section-label">FAQ</div>
+      <h2 class="notes-intro-head">THE <em>REAL</em> QUESTIONS</h2>
+      <p class="notes-intro-body">Stuff people actually want to know before they hand us a thousand dollars and their entire career narrative.</p>
+    </div>
+    <div class="notes-list">
+      <div class="note-item reveal"><div class="note-q">Who writes the story?</div><p class="note-a">A human being with 25+ years of experience in journalism, copywriting, and editorial leadership. <strong>The process is human-driven and AI-assisted</strong> — we use AI tools to accelerate research and surface patterns in your career history, but every word of your narrative is shaped, refined, and owned by a person who understands storytelling. You'll never get a paste-and-publish AI output.</p></div>
+      <div class="note-item reveal"><div class="note-q">What if I hate the first draft?</div><p class="note-a">One round of full revisions is included. In practice, most clients want small adjustments — a section rewritten, a stat added, a tone shift. We've never had to start over entirely, but if it came to that, we'd handle it.</p></div>
+      <div class="note-item reveal"><div class="note-q">How long does it take?</div><p class="note-a">Story delivery within 7 business days of your intake call. Site delivery within 7 business days of story approval. <strong>You could be live in two weeks.</strong> Rush options available if you have an interview coming up.</p></div>
+      <div class="note-item reveal"><div class="note-q">What if I'm not actively job hunting?</div><p class="note-a">Smart. The best time to build this is <em>before</em> you need it. Recruiters don't only come calling when you're desperate. Your site is also useful for speaking opportunities, client pitches, press inquiries, and board seats.</p></div>
+      <div class="note-item reveal"><div class="note-q">Do I own the site?</div><p class="note-a">Yes, completely. If you cancel hosting, we give you the full HTML file and domain transfer. It's yours. We're not a platform that holds your career hostage.</p></div>
+      <div class="note-item reveal"><div class="note-q">Is this only for senior people?</div><p class="note-a">The sweet spot is mid-to-senior professionals — 8+ years of experience, real accomplishments to build a story around. That said, <strong>if you have a compelling story, we can tell it</strong> regardless of where you are in your career.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="cta">
+  <div class="cta-bg-text"><span>STORY</span></div>
+  <div class="cta-inner">
+    <div class="cta-kicker">Your career. Your words. Your site.</div>
+    <h2 class="cta-headline">READY TO<br>GET THE<br><em>CALL?</em></h2>
+    <p class="cta-body">The complete package — story, site, and your first month live — for $1,000. Most people spend more than that trying to figure it out themselves. Let's just build the thing.</p>
+    <div class="cta-btns">
+      <button onclick="openBookingModal()" class="btn-primary">Start Your Story — Book a Session →</button>
+      <a href="/cdn-cgi/l/email-protection#2d45484141426d4e4c5f48485f5e59425f54035d5f42" class="btn-secondary">Ask a Question First</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Career<span>Story</span></div>
+    <div class="footer-copy">© 2025 CareerStory Co. · Kansas City</div>
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#e38b868f8f8ca380829186869190978c919acd93918c">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════
+     BOOKING MODAL OVERLAY
+════════════════════════════════════════════════ -->
+<div class="booking-overlay" id="booking-overlay" onclick="overlayClickClose(event)">
+  <div class="booking-modal-wrap">
+    <button class="modal-close-btn" onclick="closeBookingModal()" title="Close">✕</button>
+    <div class="booking-modal-inner">
+      <div class="modal-top-bar">
+        <div class="modal-logo">Career<span>STORY</span></div>
+        <div class="modal-step-track">
+          <div class="modal-step-pip active" id="pip-1"></div>
+          <div class="modal-step-pip" id="pip-2"></div>
+          <div class="modal-step-pip" id="pip-3"></div>
+          <div class="modal-step-pip" id="pip-4"></div>
+        </div>
+      </div>
+        <div class="booking-card">
+
+    <!-- LEFT PANEL -->
+    <aside class="left-panel">
+      <div class="panel-eyebrow">Discovery Session</div>
+      <h1 class="panel-title">Your story starts here.</h1>
+      <p class="panel-desc">A 60-minute conversation to understand your career arc — and begin crafting the narrative that defines your next chapter.</p>
+
+      <div id="summary-block" style="display:none; display:flex; flex-direction:column; gap:10px;">
+        <div class="selection-summary" id="pkg-summary" style="display:none">
+          <div class="sum-label">Package</div>
+          <div class="sum-value" id="sum-pkg-name">—</div>
+        </div>
+        <div class="priority-badge-panel" id="priority-badge-panel">
+          <span>⚡ Skip To The Front active</span>
+        </div>
+        <div class="selection-summary" id="time-summary" style="display:none">
+          <div class="sum-label">Scheduled</div>
+          <div class="sum-value" id="sum-time">—</div>
+        </div>
+      </div>
+
+      <div class="panel-meta">
+        <div class="meta-row">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          60 minutes
+        </div>
+        <div class="meta-row">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.069A1 1 0 0121 8.882V15.12a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+          Video call — link sent on booking
+        </div>
+        <div class="meta-row">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Central Time (Kansas City)
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+      <!-- ══ STEP 1: PACKAGE ══ -->
+      <div class="step active" id="step-1">
+        <h2 class="step-heading">Choose your package</h2>
+        <p class="step-sub">Select the engagement that fits where you are. All packages begin with your discovery session.</p>
+
+        <div class="packages-grid">
+          <div class="pkg-card" id="pkg-narrative" onclick="selectPkg('narrative', 'The Narrative', 1000)">
+            <div class="pkg-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="pkg-name">The Narrative</div>
+            <div class="pkg-tagline">Your story, professionally told</div>
+            <div class="pkg-features">
+              <span class="pkg-tag">Career Narrative Doc</span>
+              <span class="pkg-tag">Editorial Bio</span>
+              <span class="pkg-tag">Personal Web Presence</span>
+            </div>
+            <div class="pkg-price">$1,000</div>
+          </div>
+
+          <div class="pkg-card" id="pkg-multimedia" onclick="selectPkg('multimedia', 'Multimedia Package', 1500)">
+            <div class="pkg-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="pkg-name">Multimedia Package</div>
+            <div class="pkg-tagline">Everything in The Narrative, plus a professional visual layer</div>
+            <div class="pkg-features">
+              <span class="pkg-tag">Career Narrative Doc</span>
+              <span class="pkg-tag">Editorial Bio</span>
+              <span class="pkg-tag">Web Presence</span>
+              <span class="pkg-tag">Photo/Video Session</span>
+            </div>
+            <div class="pkg-price">$1,500</div>
+          </div>
+        </div>
+
+        <!-- PRIORITY EDITION TOGGLE -->
+        <div class="priority-toggle-wrap locked" id="priority-wrap">
+          <div class="priority-header" onclick="togglePriority()">
+            <div class="priority-left">
+              <div class="priority-tag">⚡ Upgrade Available</div>
+              <div class="priority-name">Skip To The Front</div>
+              <div class="priority-tagline">Expedited delivery, first-available scheduling, dedicated attention</div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:14px;">
+              <div class="priority-price">
+                <span id="priority-price-display">2×</span>
+                <small>of package price</small>
+              </div>
+              <label class="toggle-switch" onclick="event.stopPropagation()">
+                <input type="checkbox" id="priority-toggle" onchange="togglePriority()">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="priority-features" id="priority-features" style="display:none;">
+            <span class="priority-tag-item">Priority scheduling</span>
+            <span class="priority-tag-item">48-hr turnaround on drafts</span>
+            <span class="priority-tag-item">Direct line access</span>
+            <span class="priority-tag-item">Same-week delivery</span>
+          </div>
+        </div>
+        <div class="priority-lock-hint">Select a package above to unlock this option</div>
+
+        <div class="btn-row">
+          <span></span>
+          <button class="btn btn-primary" id="btn-pkg-next" onclick="goToStep(2)" disabled>
+            Choose a Time <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 2: DATE & TIME ══ -->
+      <div class="step" id="step-2">
+        <h2 class="step-heading">Pick a date &amp; time</h2>
+        <p class="step-sub">All times in Central Time. Availability pulled live from your connected calendar.</p>
+
+        <div class="platform-tabs">
+          <div class="platform-tab active" onclick="switchPlatform(this,'Google Calendar','#4285F4')">
+            <div class="platform-dot" style="background:#4285F4"></div>Google Calendar
+          </div>
+          <div class="platform-tab" onclick="switchPlatform(this,'Calendly','#006BFF')">
+            <div class="platform-dot" style="background:#006BFF"></div>Calendly
+          </div>
+          <div class="platform-tab" onclick="switchPlatform(this,'Acuity','#FF4F00')">
+            <div class="platform-dot" style="background:#FF4F00"></div>Acuity
+          </div>
+          <div class="platform-tab" onclick="switchPlatform(this,'Cal.com','#111')">
+            <div class="platform-dot" style="background:#111"></div>Cal.com
+          </div>
+        </div>
+
+        <div class="notice" id="cal-notice">
+          Showing availability from <strong id="notice-platform">Google Calendar</strong>.
+          <span id="notice-status">Demo mode — connect your calendar in settings for live sync.</span>
+        </div>
+
+        <div class="cal-layout">
+          <div>
+            <div class="cal-month-nav">
+              <button class="nav-btn" onclick="prevMonth()">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <span class="cal-month-label" id="cal-month-label"></span>
+              <button class="nav-btn" onclick="nextMonth()">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="cal-grid">
+              <div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div>
+              <div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div>
+              <div id="cal-days" style="display:contents"></div>
+            </div>
+          </div>
+          <div>
+            <div class="slots-heading" id="slots-heading">Select a date first</div>
+            <div class="slots-list" id="slots-list">
+              <div class="no-date-msg">← Choose a date to see available times</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-ghost" onclick="goToStep(1)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg> Back
+          </button>
+          <button class="btn btn-primary" id="btn-time-next" onclick="goToStep(3)" disabled>
+            Continue <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 3: INTAKE ══ -->
+      <div class="step" id="step-3">
+        <h2 class="step-heading">Tell me about yourself</h2>
+        <p class="step-sub">A few quick questions to make our conversation as productive as possible — and to begin thinking about your story.</p>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">First Name <span class="req">*</span></label>
+            <input type="text" class="form-input" id="f-first" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name <span class="req">*</span></label>
+            <input type="text" class="form-input" id="f-last" placeholder="Doe">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Email Address <span class="req">*</span></label>
+            <input type="email" class="form-input" id="f-email" placeholder="jane@example.com">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Current or Most Recent Title</label>
+            <input type="text" class="form-input" id="f-title" placeholder="VP of Marketing, Senior Engineer, etc.">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Industry / Field</label>
+            <select class="form-select" id="f-industry">
+              <option value="">Select your field…</option>
+              <option>Technology &amp; Engineering</option>
+              <option>Finance &amp; Banking</option>
+              <option>Marketing &amp; Communications</option>
+              <option>Healthcare &amp; Life Sciences</option>
+              <option>Legal</option>
+              <option>Education</option>
+              <option>Nonprofit &amp; Government</option>
+              <option>Creative &amp; Media</option>
+              <option>Operations &amp; Supply Chain</option>
+              <option>Other / Interdisciplinary</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">What's prompting this, right now?</label>
+            <textarea class="form-textarea" id="f-why" placeholder="Job search, career pivot, personal brand refresh, promotion push — anything helps…"></textarea>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">LinkedIn Profile</label>
+            <div class="linkedin-row">
+              <span class="linkedin-prefix">linkedin.com/in/</span>
+              <input type="text" class="linkedin-input" id="f-linkedin" placeholder="yourhandle">
+            </div>
+          </div>
+          <div class="form-group full">
+            <label class="form-label" style="margin-bottom:8px;">Supporting Files <span style="font-style:italic;font-weight:normal;text-transform:none;letter-spacing:0;color:var(--step-inactive)">(optional — resume, audio, video, images, docs)</span></label>
+            <div class="upload-zone" id="upload-zone">
+              <input type="file" accept=".pdf,.doc,.docx,.txt,.rtf,.mp3,.mp4,.wav,.m4a,.mov,.avi,.jpg,.jpeg,.png" multiple onchange="handleUpload(this)">
+              <div class="upload-icon">📎</div>
+              <div class="upload-text"><strong>Drop your files here</strong><br>Resume, audio, video, images, documents — anything that tells your story</div>
+              <div class="upload-filename" id="upload-name"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-ghost" onclick="goToStep(2)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg> Back
+          </button>
+          <button class="btn btn-gold" id="btn-submit" onclick="submitBooking()">
+            Book My Session ✦
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 4: CONFIRMATION ══ -->
+      <div class="step" id="step-4">
+        <div class="confirm-hero">
+          <div class="confirm-icon">✦</div>
+          <h2 class="confirm-title">You're confirmed.</h2>
+          <p class="confirm-sub">A calendar invitation and video link are on their way to your inbox. I'm genuinely looking forward to hearing your story.</p>
+        </div>
+
+        <div class="confirm-details">
+          <div class="confirm-block">
+            <div class="confirm-block-label">Package</div>
+            <div class="confirm-block-value" id="conf-pkg">—</div>
+          </div>
+          <div class="confirm-block">
+            <div class="confirm-block-label">Date &amp; Time</div>
+            <div class="confirm-block-value" id="conf-time">—</div>
+          </div>
+          <div class="confirm-block">
+            <div class="confirm-block-label">Client</div>
+            <div class="confirm-block-value" id="conf-name">—</div>
+          </div>
+          <div class="confirm-block">
+            <div class="confirm-block-label">Confirmation sent to</div>
+            <div class="confirm-block-value" id="conf-email">—</div>
+          </div>
+        </div>
+
+        <div class="add-to-cal-row">
+          <button class="add-cal-btn" onclick="addToCal('google')">
+            <div class="platform-dot" style="background:#4285F4;width:9px;height:9px;border-radius:50%;"></div>Google Calendar
+          </button>
+          <button class="add-cal-btn" onclick="addToCal('outlook')">
+            <div class="platform-dot" style="background:#0078D4;width:9px;height:9px;border-radius:50%;"></div>Outlook
+          </button>
+          <button class="add-cal-btn" onclick="addToCal('apple')">
+            <div class="platform-dot" style="background:#333;width:9px;height:9px;border-radius:50%;"></div>Apple Calendar
+          </button>
+        </div>
+
+        <div class="email-status" id="email-status"></div>
+
+        <!-- ══ PERSONALIZED CLIENT NOTE — visible to client ══ -->
+        <div class="client-note-panel" id="client-note-panel" style="display:none">
+          <div class="client-note-header">
+            <div class="client-note-label">A note from Justin</div>
+          </div>
+          <div class="client-note-body" id="client-note-body">
+            <div class="client-note-loading" id="client-note-loading">
+              <div class="client-note-spinner"></div>
+              Personalizing your note…
+            </div>
+          </div>
+        </div>
+        <div class="ai-draft-panel" id="ai-draft-panel" style="display:none">
+          <div class="ai-draft-header">
+            <div>
+              <div class="ai-draft-eyebrow">AI Agent — Narrative Draft</div>
+              <div class="ai-draft-title" id="ai-draft-client-name">Client Name</div>
+            </div>
+            <div class="ai-draft-badge generating" id="ai-draft-badge">Generating…</div>
+          </div>
+          <div class="ai-draft-private">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            For your eyes only — not visible to the client
+          </div>
+          <div class="ai-draft-body" id="ai-draft-body">
+            <div class="ai-draft-placeholder" id="ai-draft-placeholder">
+              <div class="ai-spinner"></div>
+              <div class="ai-placeholder-text">Ingesting resume &amp; intake data…</div>
+            </div>
+            <div class="ai-draft-text streaming" id="ai-draft-text" style="display:none"></div>
+          </div>
+          <div class="ai-draft-footer">
+            <div class="ai-word-count" id="ai-word-count"></div>
+            <button class="ai-draft-copy-btn" id="ai-copy-btn" onclick="copyDraft()" disabled>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              Copy Draft
+            </button>
+          </div>
+        </div>
+
+        <!-- ══ WHAT'S NEXT ══ -->
+        <div class="whats-next">
+          <div class="wn-heading">What happens next</div>
+          <p class="wn-sub">Here's exactly what to expect between now and the moment your story goes live.</p>
+
+          <div class="timeline" id="wn-timeline">
+
+            <div class="tl-item">
+              <div class="tl-marker">
+                <div class="tl-dot now">✦</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-when">Right now</div>
+                <div class="tl-title">Welcome email &amp; deep-dive intake</div>
+                <div class="tl-desc">Within the hour, you'll receive a personal note from me along with a short narrative intake questionnaire. It's designed to get you thinking — not filling out a form. The more you share, the richer our conversation will be.</div>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-marker">
+                <div class="tl-dot upcoming">2</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-when" id="tl-prepwhen">3 days before your session</div>
+                <div class="tl-title">Narrative prep &amp; research</div>
+                <div class="tl-desc">I'll review everything you've shared — your resume, LinkedIn, intake answers — and begin mapping the arc of your story. You'll receive a brief "conversation primer" so we can hit the ground running.</div>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-marker">
+                <div class="tl-dot upcoming">3</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-when">Day before your session</div>
+                <div class="tl-title">Personal reminder &amp; your video link</div>
+                <div class="tl-desc">A quick, personal note the evening before — not an automated reminder, a genuine check-in. Your video link will be included, along with one focused question to sit with overnight.</div>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-marker">
+                <div class="tl-dot session">📞</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-when" id="tl-sessionwhen">Your discovery session</div>
+                <div class="tl-title">The conversation</div>
+                <div class="tl-desc">60 minutes. We talk. I listen — carefully. The goal isn't to get through a script; it's to find the moments in your career that only you could have lived.</div>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-marker">
+                <div class="tl-dot upcoming" id="tl-draft-dot">5</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-when" id="tl-draftwhen">5–7 business days after</div>
+                <div class="tl-title">Your first draft</div>
+                <div class="tl-desc">Your narrative lands in your inbox. Read it slowly. This isn't a summary of your resume — it's the version of you that the right people will remember.</div>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-marker">
+                <div class="tl-dot upcoming">✓</div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-when">Refinement &amp; delivery</div>
+                <div class="tl-title">We get it exactly right</div>
+                <div class="tl-desc">Two rounds of revisions, collaborative and unhurried. When your story feels undeniably true, it goes live.</div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- end whats-next -->
+      </div><!-- end step-4 -->
+
+    </div><!-- end right-panel -->
+  </div><!-- end booking-card -->
+    </div><!-- end booking-modal-inner -->
+  </div><!-- end booking-modal-wrap -->
+</div><!-- end booking-overlay -->
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+/* ══════════════════════════════════════════════════════════════
+   CONFIGURATION — fill these in to go live
+   ══════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  // Google Calendar API
+  // 1. Enable Calendar API at console.cloud.google.com
+  // 2. Create an API key (restrict to your domain)
+  // 3. Make your calendar public (or use OAuth for private)
+  GOOGLE_API_KEY: 'AIzaSyChZE8WNcY3elPNAhLItOe_GpTOJoMvXb0',
+  GOOGLE_CALENDAR_ID: 'justinpgardner@gmail.com',
+
+  // Google Drive via Apps Script Web App
+  // Deploy the Apps Script below once → paste the Web App URL here
+  // Full setup instructions are in the SETUP GUIDE comment further down
+  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwdQ9ngI03CrOgnOgdDmv-rMAWykatw4TZyuhthzfUkraMP9ZHBIWlb0QEWFPHAGSWN/exec',
+  DRIVE_FOLDER_NAME: 'CareerStory — Client Narratives', // folder name fallback
+  DRIVE_FOLDER_ID: '1zb4ev86NR8q91nofzf067mYE17koVMGR', // direct folder ID — faster & reliable
+
+  // EmailJS (emailjs.com — free tier: 200 emails/mo)
+  // 1. Create account at emailjs.com
+  // 2. Add Gmail service → get Service ID
+  // 3. Create two templates (client + owner) → get Template IDs
+  EMAILJS_PUBLIC_KEY: '22zJDJf7u6XIqLjDS',
+  EMAILJS_SERVICE_ID: 'service_rkmhdri',
+  EMAILJS_CLIENT_TEMPLATE: 'template_rhvq66t',
+  EMAILJS_OWNER_TEMPLATE: 'template_9j7740v',
+  OWNER_EMAIL: 'justinpgardner@gmail.com',
 };
 
-function setProgress(step) {
-  document.getElementById('s1').className = 'step' + (step>1?' done':step===1?' active':'');
-  document.getElementById('s2').className = 'step' + (step>2?' done':step===2?' active':'');
-  document.getElementById('s3').className = 'step' + (step===3?' active':'');
+const DEMO_MODE = !CONFIG.GOOGLE_API_KEY || !CONFIG.EMAILJS_PUBLIC_KEY;
+
+/* ══════════════════════════════════════════════════════════════
+   STATE
+   ══════════════════════════════════════════════════════════════ */
+let state = {
+  step: 1,
+  pkgId: null,
+  pkgName: '',
+  pkgBasePrice: 0,
+  priorityOn: false,
+  finalPrice: 0,
+  selectedDate: null,
+  selectedSlot: null,
+  platform: 'Google Calendar',
+  busySlots: [],         // fetched from Google Calendar API
+  uploadedFiles: [],     // array of uploaded File objects
+  calLoading: false,
+};
+
+/* ══════════════════════════════════════════════════════════════
+   EMAILJS INIT
+   ══════════════════════════════════════════════════════════════ */
+if (CONFIG.EMAILJS_PUBLIC_KEY && typeof emailjs !== 'undefined') {
+  emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
 }
 
-function termsHTML() {
-  const rows = [
-    ['Lender', TERMS.lenderName],
-    ['Borrower', TERMS.borrowerName],
-    ['Principal', TERMS.loanAmount],
-    ['Purpose', TERMS.purpose],
-    ['Effective date', TERMS.startDate],
-    ['0% interest through', TERMS.gracePeriodEnd],
-    ['Interest after grace period', TERMS.interestRate + ' on outstanding balance'],
-    ['Early repayment trigger', 'Immediately upon receipt of World Cup rental income'],
-    ['Hard repayment deadline', TERMS.hardDeadline],
-    ['Governing law', 'State of Missouri'],
-  ];
-  return '<table class="terms">' + rows.map(([k,v])=>
-    `<tr><td>${k}</td><td>${v}</td></tr>`
-  ).join('') + '</table>';
-}
-
-function todayStr() {
-  return new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
-}
-
-function nowStr() {
-  return new Date().toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
-}
-
-function genId() {
-  return Math.random().toString(36).substring(2,8).toUpperCase();
-}
-
-function encodeState(obj) {
-  return btoa(encodeURIComponent(JSON.stringify(obj)));
-}
-
-function decodeState(str) {
-  try { return JSON.parse(decodeURIComponent(atob(str))); }
-  catch { return null; }
-}
-
-function getURLState() {
-  const p = new URLSearchParams(window.location.search);
-  const d = p.get('d');
-  return d ? decodeState(d) : null;
-}
-
-function buildShareURL(state) {
-  const base = window.location.origin + window.location.pathname;
-  return base + '?d=' + encodeState(state);
-}
-
-// ─── SCREENS ──────────────────────────────────────────────────────────
-
-function showLenderSign() {
-  setProgress(1);
-  document.getElementById('app').innerHTML = `
-    <div class="sec-label">Loan terms</div>
-    ${termsHTML()}
-    <div class="notice">
-      By signing below, you confirm you are <strong>${TERMS.lenderName}</strong>, the lender, and agree to extend a loan of ${TERMS.loanAmount} under the terms above. This is legally binding under Missouri law and the federal ESIGN Act.
-    </div>
-    <div class="sig-card">
-      <label>Lender signature — type your full name</label>
-      <input type="text" id="sig" placeholder="Justin Gardner" autocomplete="name" autocorrect="off" spellcheck="false"/>
-      <div class="sig-meta">Signing as lender &nbsp;·&nbsp; ${todayStr()}</div>
-    </div>
-    <div class="err" id="err"></div>
-    <button class="btn" id="btn" onclick="doLenderSign()" disabled>Sign as lender &rarr;</button>
-  `;
-  document.getElementById('sig').addEventListener('input', function() {
-    document.getElementById('btn').disabled = this.value.trim().length < 2;
+/* ══════════════════════════════════════════════════════════════
+   STEP NAV
+   ══════════════════════════════════════════════════════════════ */
+function goToStep(n) {
+  document.getElementById('step-' + state.step).classList.remove('active');
+  document.querySelectorAll('.modal-step-pip').forEach((p, i) => {
+    p.classList.remove('active', 'done');
+    if (i + 1 < n) p.classList.add('done');
+    else if (i + 1 === n) p.classList.add('active');
   });
+  state.step = n;
+  document.getElementById('step-' + n).classList.add('active');
+  const rp = document.querySelector('.right-panel'); if(rp) rp.scrollTop = 0;
+  if (n === 2) loadCalendarMonth();
 }
 
-function doLenderSign() {
-  const name = document.getElementById('sig').value.trim();
-  if (!name) return;
-  const state = {
-    lenderSig:  name,
-    lenderAt:   nowStr(),
-    agreementId: genId()
-  };
-  const shareURL = buildShareURL(state);
-  showShareLink(state, shareURL);
+/* ══════════════════════════════════════════════════════════════
+   PACKAGES
+   ══════════════════════════════════════════════════════════════ */
+function selectPkg(id, name, basePrice) {
+  document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('pkg-' + id).classList.add('selected');
+  state.pkgId = id;
+  state.pkgName = name;
+  state.pkgBasePrice = basePrice;
+  updateFinalPrice();
+
+  document.getElementById('btn-pkg-next').disabled = false;
+  document.getElementById('priority-wrap').classList.remove('locked');
+  document.getElementById('pkg-summary').style.display = 'block';
+  updateSummary();
 }
 
-function showShareLink(state, url) {
-  setProgress(1);
-  document.getElementById('app').innerHTML = `
-    <div class="signed-box" style="margin-bottom:1.5rem;">
-      <div class="name">${state.lenderSig}</div>
-      <div class="detail">Justin Gardner &nbsp;·&nbsp; Lender &nbsp;·&nbsp; ${state.lenderAt}</div>
-    </div>
-    <div class="share-box">
-      <p><strong>Your signature is recorded.</strong> Now send this link to Sarah — she'll open it, review the full terms, and sign as borrower. Once she signs, both of you will receive the executed agreement by email.</p>
-      <div class="url-row">
-        <input type="text" id="shareUrl" value="${url}" readonly onclick="this.select()"/>
-        <button class="copy-btn" id="copyBtn" onclick="copyURL()">Copy link</button>
-      </div>
-    </div>
-    <p style="font-size:12px;color:var(--ink3);text-align:center;line-height:1.6;">You can also text or email this link directly to Sarah. The link contains your signature — no login required on her end.</p>
-  `;
+function togglePriority() {
+  const cb = document.getElementById('priority-toggle');
+  state.priorityOn = cb.checked;
+  document.getElementById('priority-features').style.display = state.priorityOn ? 'flex' : 'none';
+  document.getElementById('priority-badge-panel').classList.toggle('on', state.priorityOn);
+  updateFinalPrice();
+  updateSummary();
+  // Update timeline delivery copy
+  const draftDot = document.getElementById('tl-draft-dot');
+  const draftWhen = document.getElementById('tl-draftwhen');
+  const prepWhen = document.getElementById('tl-prepwhen');
+  if (state.priorityOn) {
+    if (draftDot) draftDot.textContent = '⚡';
+    if (draftWhen) draftWhen.textContent = '48 hours after your session';
+    if (prepWhen) prepWhen.textContent = '24 hours before your session';
+  } else {
+    if (draftDot) draftDot.textContent = '5';
+    if (draftWhen) draftWhen.textContent = '5–7 business days after';
+    if (prepWhen) prepWhen.textContent = '3 days before your session';
+  }
 }
 
-function copyURL() {
-  const url = document.getElementById('shareUrl').value;
-  navigator.clipboard.writeText(url).then(() => {
-    const btn = document.getElementById('copyBtn');
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy link'; btn.classList.remove('copied'); }, 2500);
-  });
+function updateFinalPrice() {
+  if (!state.pkgBasePrice) return;
+  state.finalPrice = state.priorityOn ? state.pkgBasePrice * 2 : state.pkgBasePrice;
+  const display = state.priorityOn
+    ? `$${state.finalPrice.toLocaleString()} (Skip To The Front)`
+    : `$${state.finalPrice.toLocaleString()}`;
+  document.getElementById('sum-pkg-name').textContent = state.pkgName + ' — ' + display;
+  // Update priority price preview
+  if (state.pkgBasePrice) {
+    document.getElementById('priority-price-display').textContent = '$' + (state.pkgBasePrice * 2).toLocaleString();
+  }
 }
 
-function showBorrowerSign(lenderState) {
-  setProgress(2);
-  document.getElementById('app').innerHTML = `
-    <div class="sec-label">Loan terms</div>
-    ${termsHTML()}
-    <div class="sec-label" style="margin-top:1.5rem;">Lender has signed</div>
-    <div class="signed-box">
-      <div class="name">${lenderState.lenderSig}</div>
-      <div class="detail">Justin Gardner &nbsp;·&nbsp; Lender &nbsp;·&nbsp; ${lenderState.lenderAt}</div>
-    </div>
-    <div class="notice">
-      By signing below, <strong>${TERMS.borrowerName}</strong>, you agree to all terms above — including 10% monthly interest beginning July 11, 2026, and the hard repayment deadline of ${TERMS.hardDeadline}. This is legally binding under Missouri law and the federal ESIGN Act.
-    </div>
-    <div class="sig-card">
-      <label>Borrower signature — type your full name</label>
-      <input type="text" id="sig" placeholder="Sarah Belohlavy" autocomplete="name" autocorrect="off" spellcheck="false"/>
-      <div class="sig-meta">Signing as borrower &nbsp;·&nbsp; ${todayStr()}</div>
-    </div>
-    <div class="err" id="err"></div>
-    <button class="btn" id="btn" onclick="doBorrowerSign()" disabled>Sign and execute agreement &rarr;</button>
-  `;
-  document.getElementById('sig').addEventListener('input', function() {
-    document.getElementById('btn').disabled = this.value.trim().length < 2;
-  });
+function updateSummary() {
+  document.getElementById('summary-block').style.display = 'flex';
 }
 
-async function doBorrowerSign() {
-  const name = document.getElementById('sig').value.trim();
-  if (!name) return;
-  const lenderState = getURLState();
-  const btn = document.getElementById('btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Sending agreement...';
+/* ══════════════════════════════════════════════════════════════
+   GOOGLE CALENDAR API INTEGRATION
+   ══════════════════════════════════════════════════════════════ */
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const ALL_SLOTS = ['10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM'];
 
-  const fullState = {
-    ...lenderState,
-    borrowerSig: name,
-    borrowerAt: nowStr()
-  };
+let calDate = new Date();
+
+async function loadCalendarMonth() {
+  if (!CONFIG.APPS_SCRIPT_URL) {
+    renderCalendar();
+    return;
+  }
+
+  setCalNotice('loading', `Loading live availability from your Google Calendar…`);
+  state.calLoading = true;
+  renderCalendar();
 
   try {
-    await sendEmails(fullState);
-    showComplete(fullState);
-  } catch(e) {
-    document.getElementById('err').textContent = 'Email delivery failed: ' + e.message + '. Screenshot this page as your record.';
-    btn.disabled = false;
-    btn.innerHTML = 'Retry &rarr;';
-    showComplete(fullState, true);
+    const year  = calDate.getFullYear();
+    const month = calDate.getMonth();
+
+    const url = CONFIG.APPS_SCRIPT_URL
+      + '?year=' + year
+      + '&month=' + month;
+
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Apps Script error: ' + response.status);
+
+    const data = await response.json();
+    if (!data.success) throw new Error(data.error || 'Unknown error');
+
+    state.busySlots = (data.busy || []).map(b => ({
+      start: new Date(b.start),
+      end:   new Date(b.end),
+    }));
+
+    setCalNotice('default', `Live availability from <strong>Google Calendar</strong> — select a date to see open times.`);
+
+  } catch (err) {
+    console.warn('Calendar sync error:', err);
+    setCalNotice('error', 'Could not load live availability — showing estimated open slots.');
+    state.busySlots = [];
   }
+
+  state.calLoading = false;
+  renderCalendar();
 }
 
-async function sendEmails(s) {
-  const agreement = generateAgreementText(s);
-  const subject = `Executed Loan Agreement — Gardner / Belohlavy — ID: ${s.agreementId}`;
+function setCalNotice(type, html) {
+  const el = document.getElementById('cal-notice');
+  el.className = 'notice' + (type === 'loading' ? ' loading' : type === 'error' ? ' error' : '');
+  el.innerHTML = html + (DEMO_MODE ? ' <em style="opacity:.6">(Demo mode)</em>' : '');
+}
 
-  // Send to lender
-  await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-    to_email:       TERMS.lenderEmail,
-    to_name:        TERMS.lenderName,
-    subject:        subject,
-    agreement_text: agreement,
-    agreement_id:   s.agreementId
+function getSlotsForDate(date) {
+  const day = date.getDay();
+  if (day === 0 || day === 6) return [];
+
+  if (state.busySlots.length === 0) {
+    // Fallback: pseudo-random demo availability
+    const seed = date.getDate() + date.getMonth() * 31;
+    return ALL_SLOTS.filter((_, i) => (seed + i) % 3 !== 0);
+  }
+
+  // Filter out slots that overlap with real calendar events
+  return ALL_SLOTS.filter(slotStr => {
+    const { h, m } = parseTime(slotStr);
+    const slotStart = new Date(date.getFullYear(), date.getMonth(), date.getDate(), h, m);
+    const slotEnd = new Date(slotStart.getTime() + 60 * 60000);
+    return !state.busySlots.some(busy =>
+      slotStart < busy.end && slotEnd > busy.start
+    );
   });
-
-  // Send to borrower
-  await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-    to_email:       TERMS.borrowerEmail,
-    to_name:        TERMS.borrowerName,
-    subject:        subject,
-    agreement_text: agreement,
-    agreement_id:   s.agreementId
-  });
 }
 
-function generateAgreementText(s) {
-  return `PERSONAL LOAN AGREEMENT — FULLY EXECUTED
-${'─'.repeat(58)}
-Effective Date:  ${TERMS.startDate}
-Agreement ID:    ${s.agreementId}
+function renderCalendar() {
+  const year = calDate.getFullYear();
+  const month = calDate.getMonth();
+  document.getElementById('cal-month-label').textContent = MONTHS[month] + ' ' + year;
 
-PARTIES
-  Lender:   ${TERMS.lenderName} <${TERMS.lenderEmail}>
-  Borrower: ${TERMS.borrowerName} <${TERMS.borrowerEmail}>
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
 
-LOAN DETAILS
-  Principal Amount: ${TERMS.loanAmount}
-  Purpose:          ${TERMS.purpose}
+  const frag = document.createDocumentFragment();
 
-REPAYMENT TERMS
+  for (let i = 0; i < firstDay; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day empty';
+    frag.appendChild(el);
+  }
 
-  1. Interest-Free Period
-     0% interest from ${TERMS.startDate} through ${TERMS.gracePeriodEnd}
-     (90 calendar days).
+  for (let d = 1; d <= daysInMonth; d++) {
+    const thisDate = new Date(year, month, d);
+    const isPast = thisDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const isToday = thisDate.toDateString() === today.toDateString();
+    const isWeekend = thisDate.getDay() === 0 || thisDate.getDay() === 6;
+    const isSelected = state.selectedDate && thisDate.toDateString() === state.selectedDate.toDateString();
 
-  2. Interest After Grace Period
-     Beginning July 11, 2026, interest accrues at ${TERMS.interestRate}
-     on the outstanding principal balance until paid in full.
+    const el = document.createElement('div');
+    let cls = 'cal-day';
 
-  3. Early Repayment Trigger
-     Borrower agrees to repay the full outstanding balance immediately
-     upon receipt of rental income from the FIFA World Cup 2026 rental
-     period, anticipated in early-to-mid July 2026.
+    if (state.calLoading) {
+      cls += isPast || isWeekend ? ' disabled' : ' loading-day';
+    } else {
+      const hasSlots = !isPast && !isWeekend && getSlotsForDate(thisDate).length > 0;
+      if (isPast || isWeekend || !hasSlots) cls += ' disabled';
+      else cls += ' available';
+      if (!isPast && !isWeekend && hasSlots) {
+        el.onclick = () => selectDate(year, month, d);
+      }
+    }
 
-  4. Hard Repayment Deadline
-     Full outstanding balance (including any accrued interest) is due
-     no later than ${TERMS.hardDeadline}.
+    if (isToday && !isPast) cls += ' today';
+    if (isSelected) cls += ' selected';
 
-SAMPLE INTEREST SCHEDULE (if balance unpaid after grace period)
-  July 11, 2026:    $1,600.00 principal + $0 interest   = $1,600.00 due
-  August 11, 2026:  $1,600.00 principal + $160.00 (10%) = $1,760.00 due
-  September 11:     $1,600.00 principal + $320.00 (20%) = $1,920.00 due
+    el.className = cls;
+    el.textContent = d;
+    frag.appendChild(el);
+  }
 
-DEFAULT
-  Failure to repay by ${TERMS.hardDeadline} constitutes default.
-  Lender reserves all legal remedies available under Missouri law.
-
-GOVERNING LAW
-  Governed by the laws of the State of Missouri.
-  Valid under the federal ESIGN Act and Missouri's UETA.
-
-${'─'.repeat(58)}
-SIGNATURES
-
-  LENDER
-  Signature: ${s.lenderSig}
-  Party:     Justin Gardner
-  Date/Time: ${s.lenderAt}
-
-  BORROWER
-  Signature: ${s.borrowerSig}
-  Party:     Sarah Belohlavy
-  Date/Time: ${s.borrowerAt}
-
-${'─'.repeat(58)}
-This document was executed electronically. Copies were delivered to
-${TERMS.lenderEmail} and ${TERMS.borrowerEmail}.
-`;
+  const container = document.getElementById('cal-days');
+  container.innerHTML = '';
+  container.appendChild(frag);
 }
 
-function showComplete(s, emailFailed) {
-  setProgress(3);
-  document.getElementById('app').innerHTML = `
-    <div class="complete-top">
-      <div class="complete-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <h2>Agreement executed</h2>
-      <p>${emailFailed ? 'Signatures recorded — email delivery failed, screenshot this page.' : 'Copies sent to both parties via email'}</p>
-      <div class="id-badge">Agreement ID: ${s.agreementId}</div>
-    </div>
-    <div class="sec-label">Signatures on file</div>
-    <div class="signed-box" style="margin-bottom:10px;">
-      <div class="name">${s.lenderSig}</div>
-      <div class="detail">Justin Gardner &nbsp;·&nbsp; Lender &nbsp;·&nbsp; ${s.lenderAt}</div>
-    </div>
-    <div class="signed-box">
-      <div class="name">${s.borrowerSig}</div>
-      <div class="detail">Sarah Belohlavy &nbsp;·&nbsp; Borrower &nbsp;·&nbsp; ${s.borrowerAt}</div>
-    </div>
-    <div class="sec-label" style="margin-top:1.5rem;">Executed terms</div>
-    ${termsHTML()}
-  `;
+function selectDate(year, month, day) {
+  state.selectedDate = new Date(year, month, day);
+  state.selectedSlot = null;
+  document.getElementById('btn-time-next').disabled = true;
+  renderCalendar();
+  renderSlots();
+
+  const slots = getSlotsForDate(state.selectedDate);
+  setCalNotice('default', `<strong>${slots.length} open time${slots.length !== 1 ? 's' : ''}</strong> available on ${MONTHS[month].slice(0,3)} ${day} — all times Central.`);
+
+  document.getElementById('time-summary').style.display = 'block';
+  document.getElementById('sum-time').textContent = formatDate(state.selectedDate) + ' — select a time';
 }
 
-// ─── INIT ──────────────────────────────────────────────────────────────
+function formatDate(d) {
+  return MONTHS[d.getMonth()].slice(0, 3) + ' ' + d.getDate() + ', ' + d.getFullYear();
+}
 
-function init() {
-  const urlState = getURLState();
-  if (!urlState) {
-    showLenderSign();
-  } else if (urlState.lenderSig && !urlState.borrowerSig) {
-    showBorrowerSign(urlState);
-  } else if (urlState.borrowerSig) {
-    showComplete(urlState);
+function renderSlots() {
+  if (!state.selectedDate) return;
+  const slots = getSlotsForDate(state.selectedDate);
+  const heading = document.getElementById('slots-heading');
+  const list = document.getElementById('slots-list');
+  heading.textContent = formatDate(state.selectedDate);
+
+  if (!slots.length) {
+    list.innerHTML = '<div class="no-date-msg">No availability on this date.</div>';
+    return;
+  }
+
+  list.innerHTML = slots.map(s => `
+    <button class="slot-btn ${state.selectedSlot === s ? 'selected' : ''}" onclick="selectSlot('${s}')">
+      <span>${s}</span><span class="slot-tz">CT</span>
+    </button>
+  `).join('');
+}
+
+function selectSlot(slot) {
+  state.selectedSlot = slot;
+  renderSlots();
+  document.getElementById('btn-time-next').disabled = false;
+  document.getElementById('sum-time').textContent = formatDate(state.selectedDate) + ' at ' + slot + ' CT';
+}
+
+function prevMonth() { calDate.setMonth(calDate.getMonth() - 1); loadCalendarMonth(); }
+function nextMonth() { calDate.setMonth(calDate.getMonth() + 1); loadCalendarMonth(); }
+
+function switchPlatform(el, name) {
+  document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  state.platform = name;
+  document.getElementById('notice-platform').textContent = name;
+
+  if (name === 'Google Calendar' && CONFIG.GOOGLE_API_KEY) {
+    loadCalendarMonth();
   } else {
-    showLenderSign();
+    setCalNotice('default', `Showing demo availability. To connect ${name}, integrate their embed or API.`);
+    state.busySlots = [];
+    renderCalendar();
   }
 }
 
-init();
+/* ══════════════════════════════════════════════════════════════
+   FILE UPLOAD
+   ══════════════════════════════════════════════════════════════ */
+function handleUpload(input) {
+  if (input.files && input.files.length > 0) {
+    state.uploadedFiles = Array.from(input.files);
+    const names = state.uploadedFiles.map(f => f.name).join(', ');
+    const count = state.uploadedFiles.length;
+    document.getElementById('upload-name').textContent =
+      '✓ ' + count + ' file' + (count > 1 ? 's' : '') + ' selected: ' + names;
+    document.getElementById('upload-zone').style.borderColor = 'var(--gold)';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const zone = document.getElementById('upload-zone');
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    if (e.dataTransfer.files.length > 0) {
+      state.uploadedFiles = Array.from(e.dataTransfer.files);
+      const count = state.uploadedFiles.length;
+      document.getElementById('upload-name').textContent =
+        '✓ ' + count + ' file' + (count > 1 ? 's' : '') + ' selected: ' +
+        state.uploadedFiles.map(f => f.name).join(', ');
+      zone.style.borderColor = 'var(--gold)';
+    }
+  });
+
+  renderCalendar();
+
+  const banner = document.getElementById('config-banner');
+  if (banner) {
+    if (DEMO_MODE) banner.style.display = '';
+    else banner.style.display = 'none';
+  }
+});
+
+/* ══════════════════════════════════════════════════════════════
+   SUBMIT + EMAILJS
+   ══════════════════════════════════════════════════════════════ */
+async function submitBooking() {
+  const first = document.getElementById('f-first').value.trim();
+  const last  = document.getElementById('f-last').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if (!first || !last || !email) { alert('Please fill in your name and email.'); return; }
+
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Booking…';
+
+  // Confirm screen
+  const pkgDisplay = state.pkgName + (state.priorityOn ? ' (Skip To The Front)' : '') + ' — $' + state.finalPrice.toLocaleString();
+  document.getElementById('conf-pkg').textContent = pkgDisplay;
+  document.getElementById('conf-time').textContent = formatDate(state.selectedDate) + ' at ' + state.selectedSlot + ' CT';
+  document.getElementById('conf-name').textContent = first + ' ' + last;
+  document.getElementById('conf-email').textContent = email;
+
+  // Update timeline session date
+  const tl = document.getElementById('tl-sessionwhen');
+  if (tl) tl.textContent = formatDate(state.selectedDate) + ' at ' + state.selectedSlot + ' CT';
+
+  goToStep(4);
+
+  // ── Fire personalized client note ────────────────────────
+  generateClientNote({
+    firstName: first,
+    title: document.getElementById('f-title').value,
+    industry: document.getElementById('f-industry').value,
+    why: document.getElementById('f-why').value,
+    linkedin: document.getElementById('f-linkedin').value,
+    package: pkgDisplay,
+    uploadedFiles: state.uploadedFiles,
+  });
+
+  // ── Fire AI narrative agent ──────────────────────────────
+  generateNarrativeDraft({
+    firstName: first,
+    lastName: last,
+    email,
+    title: document.getElementById('f-title').value,
+    industry: document.getElementById('f-industry').value,
+    why: document.getElementById('f-why').value,
+    linkedin: document.getElementById('f-linkedin').value,
+    package: pkgDisplay,
+    uploadedFiles: state.uploadedFiles,
+  });
+
+  // ── Send emails via EmailJS ──────────────────────────────
+  const emailParams = {
+    name:           first + ' ' + last,
+    email:          CONFIG.OWNER_EMAIL,   // matches {{email}} in owner alert template
+    client_name:    first + ' ' + last,
+    client_email:   email,
+    client_title:   document.getElementById('f-title').value,
+    client_industry:document.getElementById('f-industry').value,
+    client_why:     document.getElementById('f-why').value,
+    client_linkedin:document.getElementById('f-linkedin').value,
+    package_name:   pkgDisplay,
+    session_date:   formatDate(state.selectedDate),
+    session_time:   state.selectedSlot + ' CT',
+    priority:       state.priorityOn ? 'YES — Skip To The Front' : 'No',
+    owner_email:    CONFIG.OWNER_EMAIL,
+  };
+
+  if (CONFIG.EMAILJS_SERVICE_ID && CONFIG.EMAILJS_CLIENT_TEMPLATE && typeof emailjs !== "undefined") {
+    try {
+      const statusEl = document.getElementById('email-status');
+      statusEl.textContent = 'Sending confirmation…';
+
+      await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_CLIENT_TEMPLATE, emailParams);
+      await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_OWNER_TEMPLATE, emailParams);
+
+      statusEl.textContent = '✓ Confirmation sent to ' + email;
+      statusEl.className = 'email-status sent';
+    } catch (err) {
+      console.warn('EmailJS error:', err);
+      const errDetail = err?.text || err?.message || JSON.stringify(err) || 'Unknown error';
+      document.getElementById('email-status').textContent = 'Email error: ' + errDetail;
+      document.getElementById('email-status').className = 'email-status error';
+    }
+  } else {
+    document.getElementById('email-status').textContent = '(Demo mode — emails not sent. Add EmailJS keys to enable.)';
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   AI NARRATIVE AGENT — streams a draft narrative from Claude
+   ══════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════
+   PERSONALIZED CLIENT NOTE — streams to client on confirmation
+   ══════════════════════════════════════════════════════════════ */
+async function generateClientNote(client) {
+  const panel = document.getElementById('client-note-panel');
+  const body  = document.getElementById('client-note-body');
+  const loading = document.getElementById('client-note-loading');
+
+  panel.style.display = 'block';
+
+  const context = [
+    client.title    ? `Title: ${client.title}`       : '',
+    client.industry ? `Industry: ${client.industry}` : '',
+    client.linkedin ? `LinkedIn: linkedin.com/in/${client.linkedin}` : '',
+    client.why      ? `What prompted this: ${client.why}` : '',
+    `Package: ${client.package}`,
+  ].filter(Boolean).join('\n');
+
+  const systemPrompt = `You write short personal notes on behalf of Justin Gardner of CareerStory, a bespoke career narrative service. Your notes feel like they came from a sharp, attentive human who actually read someone's background — not a bot. You are warm but specific. You name real things from their background. You do not flatter. You do not use corporate language. You do not ask questions. You do not mention AI. Write exactly two sentences. Return nothing else — no greeting, no sign-off, no preamble.`;
+
+  const userPrompt = `Write a two-sentence personal note to ${client.firstName} based on this context:\n\n${context}\n\nThe note should feel like Justin read their background and is genuinely looking forward to the conversation. Reference something specific from their background.`;
+
+  try {
+    const response = await fetch(CONFIG.CLAUDE_WORKER, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 150,
+        system: systemPrompt,
+        stream: true,
+        messages: [{ role: 'user', content: userPrompt }],
+      })
+    });
+
+    if (!response.ok) throw new Error('Worker error ' + response.status);
+
+    loading.style.display = 'none';
+    body.innerHTML = '';
+    body.classList.add('streaming');
+
+    let fullText = '';
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const lines = decoder.decode(value, { stream: true }).split('\n').filter(l => l.startsWith('data: '));
+      for (const line of lines) {
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') continue;
+        try {
+          const parsed = JSON.parse(data);
+          if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
+            fullText += parsed.delta.text;
+            body.textContent = fullText;
+          }
+        } catch (_) {}
+      }
+    }
+
+    body.classList.remove('streaming');
+
+  } catch (err) {
+    console.warn('Client note error:', err);
+    loading.style.display = 'none';
+    body.classList.remove('streaming');
+    body.textContent = 'Looking forward to our conversation, ' + client.firstName + '.';
+  }
+}
+
+async function generateNarrativeDraft(client) {
+  const panel = document.getElementById('ai-draft-panel');
+  const badge = document.getElementById('ai-draft-badge');
+  const placeholder = document.getElementById('ai-draft-placeholder');
+  const textEl = document.getElementById('ai-draft-text');
+  const copyBtn = document.getElementById('ai-copy-btn');
+  const wordCountEl = document.getElementById('ai-word-count');
+
+  panel.style.display = 'block';
+  document.getElementById('ai-draft-client-name').textContent = client.firstName + ' ' + client.lastName;
+
+  // Build message content — text context always included
+  const contextBlock = `
+CLIENT INTAKE SUMMARY
+=====================
+Name: ${client.firstName} ${client.lastName}
+Current/Recent Title: ${client.title || 'Not provided'}
+Industry: ${client.industry || 'Not provided'}
+LinkedIn: ${client.linkedin ? 'linkedin.com/in/' + client.linkedin : 'Not provided'}
+Package Selected: ${client.package}
+What prompted this: ${client.why || 'Not provided'}
+`.trim();
+
+  // Build messages — attach PDFs and text files
+  let messages;
+  const files = client.uploadedFiles || [];
+  const pdfFiles = files.filter(f => f.type === 'application/pdf');
+  const textFiles = files.filter(f => f.type === 'text/plain' || f.name.endsWith('.txt') || f.name.endsWith('.rtf'));
+  const mediaFiles = files.filter(f => f.type.startsWith('video/') || f.type.startsWith('audio/'));
+  const imageFiles = files.filter(f => f.type.startsWith('image/'));
+
+  const contentParts = [];
+
+  // Add PDF documents
+  if (pdfFiles.length > 0) {
+    placeholder.querySelector('.ai-placeholder-text').textContent = 'Reading uploaded documents…';
+    for (const pdf of pdfFiles) {
+      try {
+        const base64 = await fileToBase64(pdf);
+        contentParts.push({
+          type: 'document',
+          source: { type: 'base64', media_type: 'application/pdf', data: base64 }
+        });
+      } catch(e) { /* skip */ }
+    }
+  }
+
+  // Add images
+  for (const img of imageFiles) {
+    try {
+      const base64 = await fileToBase64(img);
+      const mediaType = img.type;
+      contentParts.push({
+        type: 'image',
+        source: { type: 'base64', media_type: mediaType, data: base64 }
+      });
+    } catch(e) { /* skip */ }
+  }
+
+  // Build text note about media files
+  let mediaNote = '';
+  if (mediaFiles.length > 0) {
+    mediaNote = '\n\nMEDIA FILES UPLOADED (audio/video — not directly readable, but noted for the discovery call):\n' +
+      mediaFiles.map(f => '- ' + f.name + ' (' + (f.size / 1024 / 1024).toFixed(1) + 'MB)').join('\n');
+  }
+
+  // Build text content from text files
+  let textContent = '';
+  for (const tf of textFiles) {
+    try {
+      const text = await tf.text();
+      textContent += '\n\nUPLOADED TEXT FILE (' + tf.name + '):\n' + text;
+    } catch(e) { /* skip */ }
+  }
+
+  const fullContext = contextBlock + textContent + mediaNote +
+    '\n\nUsing all uploaded materials and intake context above, write the narrative draft as instructed.';
+
+  contentParts.push({ type: 'text', text: fullContext });
+  messages = [{ role: 'user', content: contentParts.length === 1 ? fullContext : contentParts }];
+
+  placeholder.querySelector('.ai-placeholder-text').textContent = 'Drafting narrative…';
+
+  const systemPrompt = `You are a narrative writer specializing in professional career stories. Your job is to transform raw career data into a compelling, human, first-person career narrative for use on a personal website.
+
+You will be given two inputs:
+- A LinkedIn profile (URL or pasted content)
+- Notes and/or transcript from a 1-hour intake call
+
+Your output is a 1,200–1,800 word career narrative structured in five chapters:
+
+Chapter 1 — The Origin
+Where did this person begin? What early experience, environment, or moment shaped how they think about work? This is not their first job — it's the seed of who they became professionally.
+
+Chapter 2 — The Build
+The years of accumulation. Skills developed, roles taken, patterns that emerged. What did they get good at, and how? Look for the through-line that connects seemingly unrelated jobs or industries.
+
+Chapter 3 — The Pivot or Peak
+Every career has a defining moment — a bet they made, a door they walked through, a thing they built that mattered. Find it in the intake notes. This is the emotional center of the story.
+
+Chapter 4 — The Philosophy
+What do they believe about their work, their industry, their approach? This is what makes them distinct from someone with an identical resume. Pull this from how they spoke in the intake call, not from their LinkedIn bio.
+
+Chapter 5 — The Next Chapter
+Where are they going and why? This should feel like an invitation — to employers, collaborators, and opportunities. It should be forward-facing without being generic.
+
+WRITING GUIDELINES:
+Voice: First person, warm, confident, and specific. Never corporate. Never resume-language. Write like a thoughtful person reflecting on their own life, not like a LinkedIn summary.
+Specificity: Use real names of companies, real numbers, real project names where available. Vague writing kills credibility. "Led a team" is weak. "Built a 12-person content team from scratch during a rebrand" is strong.
+Emotion: Where the intake notes suggest pride, difficulty, excitement, or uncertainty — honor that. Don't flatten it into professionalism.
+Length: 1,200 words minimum, 1,800 maximum. Each chapter should breathe. No chapter should be under 150 words.
+
+What to avoid:
+- Buzzwords (passionate, innovative, dynamic, leverage, synergy)
+- Passive voice
+- Chronological résumé recitation
+- Generic openers ("I have always been passionate about...")
+- Anything that could have been written about anyone else
+
+BEFORE YOU WRITE:
+Read all inputs fully before drafting. Identify:
+- The single most interesting thing about this person that LinkedIn alone would never reveal
+- The moment in the intake call where they seemed most alive or most honest
+- The through-line that connects their whole career even if they haven't named it themselves
+
+Lead with that. Build everything else around it.
+
+OUTPUT FORMAT:
+Return the narrative in clean prose with chapter headings. After the narrative, add a brief section called EDITOR'S NOTES with 3–5 observations about what you found most compelling, what felt thin or underdeveloped, and what you'd want to ask the client in a follow-up if needed.
+
+NOTE: At this stage you are working from intake form data only — not a full call transcript. Use what's available (resume, LinkedIn handle, title, industry, and what prompted them to book) to produce the strongest possible first draft. Flag anything that needs to be filled in from the discovery call inside [BRACKETS].`;
+
+  try {
+    const response = await fetch('https://white-fire-5035.justinpgardner.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 2500,
+        system: systemPrompt,
+        stream: true,
+        messages,
+      })
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.error?.message || 'API error ' + response.status);
+    }
+
+    // Switch UI to streaming mode
+    placeholder.style.display = 'none';
+    textEl.style.display = 'block';
+    textEl.className = 'ai-draft-text streaming';
+    badge.textContent = 'Generating…';
+
+    let fullText = '';
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n').filter(l => l.startsWith('data: '));
+
+      for (const line of lines) {
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') continue;
+        try {
+          const parsed = JSON.parse(data);
+          if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
+            fullText += parsed.delta.text;
+            textEl.textContent = fullText;
+            // Auto-scroll to bottom as text streams
+            const body = document.getElementById('ai-draft-body');
+            body.scrollTop = body.scrollHeight;
+          }
+        } catch (_) {}
+      }
+    }
+
+    // Done streaming
+    textEl.className = 'ai-draft-text'; // remove cursor
+    badge.textContent = 'Draft ready';
+    badge.className = 'ai-draft-badge done';
+    copyBtn.disabled = false;
+
+    const words = fullText.trim().split(/\s+/).length;
+    wordCountEl.textContent = words + ' words';
+
+    // Store for copy
+    window._narrativeDraft = fullText;
+
+    // ── Push to Google Drive ─────────────────────────────────
+    // Build files payload — encode PDFs and text files for Drive
+    const uploadedFilesData = [];
+    for (const file of (client.uploadedFiles || [])) {
+      try {
+        if (file.type === 'application/pdf' || file.type === 'text/plain' ||
+            file.name.endsWith('.txt') || file.name.endsWith('.doc') || file.name.endsWith('.docx')) {
+          const base64 = await fileToBase64(file);
+          uploadedFilesData.push({
+            name: file.name,
+            type: file.type || 'application/octet-stream',
+            base64: base64,
+            size: file.size,
+          });
+        } else {
+          // Note media files by name without encoding (too large)
+          uploadedFilesData.push({
+            name: file.name,
+            type: file.type,
+            base64: null,
+            size: file.size,
+          });
+        }
+      } catch(e) { /* skip */ }
+    }
+
+    uploadDraftToDrive({
+      clientName: client.firstName + ' ' + client.lastName,
+      clientEmail: client.email,
+      clientTitle: client.title,
+      clientIndustry: client.industry,
+      clientLinkedIn: client.linkedin,
+      clientWhy: client.why,
+      packageName: client.package,
+      priority: state.priorityOn ? 'Yes — Skip To The Front' : 'No',
+      sessionDate: formatDate(state.selectedDate) + ' at ' + state.selectedSlot + ' CT',
+      sessionDateISO: state.selectedDate.toISOString().split('T')[0],
+      sessionTime: state.selectedSlot,
+      narrativeDraft: fullText,
+      uploadedFiles: uploadedFilesData,
+    });
+
+  } catch (err) {
+    console.error('AI agent error:', err);
+    placeholder.style.display = 'none';
+    textEl.style.display = 'block';
+    textEl.className = 'ai-draft-text';
+    textEl.textContent = 'Draft generation failed: ' + err.message + '\n\nYou can generate manually after reviewing their intake data.';
+    badge.textContent = 'Error';
+    badge.className = 'ai-draft-badge error';
+    wordCountEl.textContent = '';
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GOOGLE DRIVE UPLOAD via Apps Script Web App
+
+   SETUP — one time, takes ~5 minutes:
+   ─────────────────────────────────────────────────────────────
+   1. Go to script.google.com → New Project → name it "CareerStory Drive"
+   2. Delete the default code and paste the Apps Script below
+   3. Click Deploy → New Deployment → Type: Web App
+      - Execute as: Me (justinpgardner@gmail.com)
+      - Who has access: Anyone
+   4. Click Deploy → copy the Web App URL
+   5. Paste it into CONFIG.APPS_SCRIPT_URL above
+
+   ── PASTE THIS INTO APPS SCRIPT ──────────────────────────────
+   function doPost(e) {
+     try {
+       const data = JSON.parse(e.postData.contents);
+       const folderName = data.folderName || 'CareerStory — Client Narratives';
+
+       // Get the CareerStory folder directly by ID
+       let folder = DriveApp.getFolderById(data.folderId || '1zb4ev86NR8q91nofzf067mYE17koVMGR');
+
+       // Build the document title
+       const dateStr = Utilities.formatDate(new Date(), 'America/Chicago', 'yyyy-MM-dd');
+       const docTitle = dateStr + ' — ' + data.clientName + ' — Initial Narrative Draft';
+
+       // Create the Google Doc
+       const doc = DocumentApp.create(docTitle);
+       const body = doc.getBody();
+
+       // Header block
+       body.appendParagraph('CareerStory — Narrative Draft')
+           .setHeading(DocumentApp.ParagraphHeading.HEADING1);
+       body.appendParagraph('');
+
+       const meta = [
+         ['Client', data.clientName],
+         ['Email', data.clientEmail],
+         ['Title', data.clientTitle || '—'],
+         ['Industry', data.clientIndustry || '—'],
+         ['LinkedIn', data.clientLinkedIn ? 'linkedin.com/in/' + data.clientLinkedIn : '—'],
+         ['Package', data.packageName],
+         ['Session', data.sessionDate],
+         ['Generated', Utilities.formatDate(new Date(), 'America/Chicago', 'MMM d, yyyy h:mm a z')],
+       ];
+       meta.forEach(([label, value]) => {
+         const p = body.appendParagraph(label + ': ' + value);
+         p.setFontSize(10);
+       });
+
+       body.appendParagraph('').appendHorizontalRule();
+       body.appendParagraph('WHAT PROMPTED THIS').setHeading(DocumentApp.ParagraphHeading.HEADING2);
+       body.appendParagraph(data.clientWhy || '(not provided)').setFontSize(11);
+       body.appendParagraph('').appendHorizontalRule();
+       body.appendParagraph('NARRATIVE DRAFT — v1 (AI)').setHeading(DocumentApp.ParagraphHeading.HEADING2);
+       body.appendParagraph(data.narrativeDraft).setFontSize(12);
+       body.appendParagraph('').appendHorizontalRule();
+       body.appendParagraph('NOTES FOR DISCOVERY CALL')
+           .setHeading(DocumentApp.ParagraphHeading.HEADING2);
+       body.appendParagraph('[Your pre-call notes here]').setFontSize(11).setItalic(true);
+
+       doc.saveAndClose();
+
+       // Move doc into CareerStory folder
+       const file = DriveApp.getFileById(doc.getId());
+       folder.addFile(file);
+       DriveApp.getRootFolder().removeFile(file);
+
+       return ContentService
+         .createTextOutput(JSON.stringify({ success: true, docUrl: doc.getUrl(), docTitle }))
+         .setMimeType(ContentService.MimeType.JSON);
+
+     } catch(err) {
+       return ContentService
+         .createTextOutput(JSON.stringify({ success: false, error: err.message }))
+         .setMimeType(ContentService.MimeType.JSON);
+     }
+   }
+   ── END APPS SCRIPT ──────────────────────────────────────────
+   ══════════════════════════════════════════════════════════════ */
+async function uploadDraftToDrive(payload) {
+  const wordCountEl = document.getElementById('ai-word-count');
+  const badge = document.getElementById('ai-draft-badge');
+
+  if (!CONFIG.APPS_SCRIPT_URL) {
+    wordCountEl.textContent =
+      (payload.narrativeDraft.trim().split(/\s+/).length) + ' words · Drive not configured';
+    return;
+  }
+
+  try {
+    wordCountEl.textContent =
+      (payload.narrativeDraft.trim().split(/\s+/).length) + ' words · Saving to Drive…';
+
+    const response = await fetch(CONFIG.APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...payload,
+        folderName: CONFIG.DRIVE_FOLDER_NAME,
+        folderId: CONFIG.DRIVE_FOLDER_ID,
+      }),
+      // Apps Script requires no-cors for cross-origin POST from a plain HTML file
+      mode: 'no-cors',
+    });
+
+    // no-cors returns opaque response — we can't read it, but if it didn't throw, it worked
+    wordCountEl.innerHTML =
+      (payload.narrativeDraft.trim().split(/\s+/).length) +
+      ' words · <span style="color:#2e7d32">✓ Saved to Google Drive</span>';
+
+  } catch (err) {
+    console.warn('Drive upload error:', err);
+    wordCountEl.textContent =
+      (payload.narrativeDraft.trim().split(/\s+/).length) + ' words · Drive save failed';
+  }
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = () => reject(new Error('File read failed'));
+    reader.readAsDataURL(file);
+  });
+}
+
+function copyDraft() {
+  if (!window._narrativeDraft) return;
+  navigator.clipboard.writeText(window._narrativeDraft).then(() => {
+    const btn = document.getElementById('ai-copy-btn');
+    btn.textContent = '✓ Copied';
+    setTimeout(() => {
+      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Draft`;
+    }, 2000);
+  });
+}
+function parseTime(timeStr) {
+  const [time, ampm] = timeStr.split(' ');
+  let [h, m] = time.split(':').map(Number);
+  if (ampm === 'PM' && h !== 12) h += 12;
+  if (ampm === 'AM' && h === 12) h = 0;
+  return { h, m };
+}
+
+function addToCal(type) {
+  const dt = state.selectedDate;
+  const { h, m } = parseTime(state.selectedSlot);
+  const title = encodeURIComponent('CareerStory Discovery Call — ' + state.pkgName);
+  const d = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), h, m);
+  const end = new Date(d.getTime() + 60 * 60000);
+  const fmt = d2 => d2.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+
+  if (type === 'google') {
+    window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(d)}/${fmt(end)}&details=Discovery+call+with+CareerStory.`, '_blank');
+  } else if (type === 'outlook') {
+    window.open(`https://outlook.live.com/calendar/0/deeplink/compose?subject=${title}&startdt=${d.toISOString()}&body=Discovery+call+with+CareerStory.`, '_blank');
+  } else {
+    const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:CareerStory Discovery Call\nDTSTART:${fmt(d)}Z\nDTEND:${fmt(end)}Z\nDESCRIPTION:Discovery call with CareerStory.\nEND:VEVENT\nEND:VCALENDAR`;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    a.download = 'careerstory-session.ics';
+    a.click();
+  }
+}
+
+function showConfigHelp() {
+  alert('To go live:\n\n1. GOOGLE CALENDAR API\n   → console.cloud.google.com → Enable "Calendar API"\n   → Credentials → Create API Key\n   → Paste into CONFIG.GOOGLE_API_KEY\n   → Paste your calendar ID into CONFIG.GOOGLE_CALENDAR_ID\n\n2. EMAILJS (free tier, 200 emails/mo)\n   → emailjs.com → Add Gmail service\n   → Create 2 email templates (client + owner alert)\n   → Paste IDs into CONFIG object at top of script\n\n3. Remove the config banner line at top of HTML once done.');
+}
+
+/* ════════════════════════════════════════════════════════════
+   MODAL OPEN / CLOSE
+════════════════════════════════════════════════════════════ */
+function openBookingModal() {
+  document.getElementById('booking-overlay').classList.add('open');
+  document.body.classList.add('modal-open');
+  const wrap = document.querySelector('.booking-modal-wrap');
+  wrap.classList.remove('slide-in');
+  void wrap.offsetWidth;
+  wrap.classList.add('slide-in');
+  if (state.step === 2) loadCalendarMonth();
+  else renderCalendar();
+}
+
+function closeBookingModal() {
+  document.getElementById('booking-overlay').classList.remove('open');
+  document.body.classList.remove('modal-open');
+  if (state.step === 4) {
+    setTimeout(() => {
+      document.getElementById('step-' + state.step).classList.remove('active');
+      state.step = 1;
+      document.getElementById('step-1').classList.add('active');
+      document.querySelectorAll('.modal-step-pip').forEach((p, i) => {
+        p.classList.remove('active', 'done');
+        if (i === 0) p.classList.add('active');
+      });
+      const btn = document.getElementById('btn-submit');
+      if (btn) { btn.disabled = false; btn.textContent = 'Book My Session ✶'; }
+    }, 320);
+  }
+}
+
+function overlayClickClose(e) {
+  if (e.target === document.getElementById('booking-overlay')) closeBookingModal();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeBookingModal();
+});
+
+
+/* ════════════════════════════════════════════════════════════
+   SERVICE PAGE — SCROLL ANIMATIONS
+════════════════════════════════════════════════════════════ */
+// Progressive enhancement: only hide elements if JS is running
+// Add animate-ready class (triggers opacity:0) right before observing
+const revealEls = document.querySelectorAll('.reveal');
+revealEls.forEach(el => el.classList.add('animate-ready'));
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      e.target.classList.remove('animate-ready');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '60px 0px 0px 0px' });
+
+revealEls.forEach(el => revealObserver.observe(el));
+
+// Nuclear fallback — 800ms: show everything that hasn't triggered
+setTimeout(() => {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    el.classList.add('visible');
+    el.classList.remove('animate-ready');
+  });
+}, 800);
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
 </script>
 </body>
 </html>
