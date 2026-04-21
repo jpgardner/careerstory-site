@@ -843,174 +843,70 @@ input:checked + .toggle-slider::before { transform: translateX(18px); }
   animation: spin 0.8s linear infinite;
   flex-shrink: 0;
 }
-.ai-draft-panel {
-  margin-top: 28px;
+
+/* ── CLIENT REFLECTION PANEL ── */
+.client-reflection-panel {
+  margin-top: 20px;
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
 }
-
-.ai-draft-header {
-  background: var(--ink);
-  padding: 13px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+.client-reflection-header {
+  background: var(--cream);
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
 }
-
-.ai-draft-eyebrow {
+.client-reflection-label {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold);
-}
-
-.ai-draft-title {
-  font-family: var(--font-serif);
-  font-size: 0.92rem;
-  color: var(--parchment);
-  margin-top: 1px;
-}
-
-.ai-draft-badge {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 3px 9px;
-  border-radius: 20px;
-  flex-shrink: 0;
-}
-
-.ai-draft-badge.generating {
-  background: rgba(184,145,74,0.2);
-  color: var(--gold-light);
-  border: 1px solid rgba(184,145,74,0.35);
-  animation: pulse-badge 1.4s ease-in-out infinite;
-}
-
-.ai-draft-badge.done {
-  background: rgba(46,125,50,0.15);
-  color: #81c784;
-  border: 1px solid rgba(46,125,50,0.3);
-}
-
-.ai-draft-badge.error {
-  background: rgba(198,40,40,0.12);
-  color: #ef9a9a;
-  border: 1px solid rgba(198,40,40,0.25);
-}
-
-@keyframes pulse-badge {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.55; }
-}
-
-.ai-draft-private {
-  background: rgba(184,145,74,0.08);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 18px;
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
   color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 7px;
 }
-
-.ai-draft-body {
-  padding: 20px 22px;
-  background: var(--cream);
-  min-height: 120px;
-  max-height: 520px;
-  overflow-y: auto;
-  position: relative;
-}
-
-.ai-draft-body::-webkit-scrollbar { width: 4px; }
-.ai-draft-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-.ai-draft-text {
-  font-size: 0.82rem;
-  line-height: 1.85;
+.client-reflection-body {
+  padding: 22px 24px;
+  background: var(--white);
+  min-height: 80px;
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  line-height: 1.8;
   color: var(--ink);
   white-space: pre-wrap;
 }
-
-.ai-draft-text.streaming::after {
+.client-reflection-body strong {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.client-reflection-body.streaming::after {
   content: '▋';
   display: inline-block;
   animation: blink 0.7s step-end infinite;
   color: var(--gold);
   margin-left: 1px;
 }
-
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-.ai-draft-placeholder {
+.client-reflection-loading {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 10px;
-  padding: 28px 0;
   color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
 }
-
-.ai-spinner {
-  width: 28px; height: 28px;
-  border: 2px solid var(--border);
+.client-reflection-spinner {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--border);
   border-top-color: var(--gold);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.ai-placeholder-text {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  color: var(--step-inactive);
-}
-
-.ai-draft-footer {
-  padding: 12px 18px;
-  border-top: 1px solid var(--border);
-  background: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.ai-draft-copy-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  background: var(--ink);
-  color: var(--parchment);
-  border: none;
-  border-radius: var(--radius);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.ai-draft-copy-btn:hover { background: #2d2925; }
-.ai-draft-copy-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.ai-word-count {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  color: var(--step-inactive);
-  letter-spacing: 0.08em;
+  flex-shrink: 0;
 }
 
 @media (max-width: 720px) {
@@ -1663,31 +1559,16 @@ input:checked + .toggle-slider::before { transform: translateX(18px); }
             </div>
           </div>
         </div>
-        <div class="ai-draft-panel" id="ai-draft-panel" style="display:none">
-          <div class="ai-draft-header">
-            <div>
-              <div class="ai-draft-eyebrow">AI Agent — Narrative Draft</div>
-              <div class="ai-draft-title" id="ai-draft-client-name">Client Name</div>
+        <!-- ══ REFLECTION — visible to client ══ -->
+        <div class="client-reflection-panel" id="client-reflection-panel" style="display:none">
+          <div class="client-reflection-header">
+            <div class="client-reflection-label">What I'm hearing so far</div>
+          </div>
+          <div class="client-reflection-body" id="client-reflection-body">
+            <div class="client-reflection-loading" id="client-reflection-loading">
+              <div class="client-reflection-spinner"></div>
+              Sitting with your intake…
             </div>
-            <div class="ai-draft-badge generating" id="ai-draft-badge">Generating…</div>
-          </div>
-          <div class="ai-draft-private">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            For your eyes only — not visible to the client
-          </div>
-          <div class="ai-draft-body" id="ai-draft-body">
-            <div class="ai-draft-placeholder" id="ai-draft-placeholder">
-              <div class="ai-spinner"></div>
-              <div class="ai-placeholder-text">Ingesting resume &amp; intake data…</div>
-            </div>
-            <div class="ai-draft-text streaming" id="ai-draft-text" style="display:none"></div>
-          </div>
-          <div class="ai-draft-footer">
-            <div class="ai-word-count" id="ai-word-count"></div>
-            <button class="ai-draft-copy-btn" id="ai-copy-btn" onclick="copyDraft()" disabled>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              Copy Draft
-            </button>
           </div>
         </div>
 
@@ -1809,6 +1690,9 @@ const CONFIG = {
   EMAILJS_CLIENT_TEMPLATE: 'template_rhvq66t',
   EMAILJS_OWNER_TEMPLATE: 'template_9j7740v',
   OWNER_EMAIL: 'justinpgardner@gmail.com',
+
+  // Cloudflare Worker — Claude API proxy
+  CLAUDE_WORKER: 'https://carrerstoryai.justinpgardner.workers.dev',
 };
 
 const DEMO_MODE = !CONFIG.GOOGLE_API_KEY || !CONFIG.EMAILJS_PUBLIC_KEY;
@@ -2176,17 +2060,14 @@ async function submitBooking() {
     uploadedFiles: state.uploadedFiles,
   });
 
-  // ── Fire AI narrative agent ──────────────────────────────
-  generateNarrativeDraft({
+  // ── Fire client reflection ───────────────────────────────
+  generateReflection({
     firstName: first,
-    lastName: last,
-    email,
     title: document.getElementById('f-title').value,
     industry: document.getElementById('f-industry').value,
     why: document.getElementById('f-why').value,
     linkedin: document.getElementById('f-linkedin').value,
     package: pkgDisplay,
-    uploadedFiles: state.uploadedFiles,
   });
 
   // ── Send emails via EmailJS ──────────────────────────────
@@ -2227,9 +2108,6 @@ async function submitBooking() {
   }
 }
 
-/* ══════════════════════════════════════════════════════════════
-   AI NARRATIVE AGENT — streams a draft narrative from Claude
-   ══════════════════════════════════════════════════════════════ */
 /* ══════════════════════════════════════════════════════════════
    PERSONALIZED CLIENT NOTE — streams to client on confirmation
    ══════════════════════════════════════════════════════════════ */
@@ -2302,161 +2180,56 @@ async function generateClientNote(client) {
   }
 }
 
-async function generateNarrativeDraft(client) {
-  const panel = document.getElementById('ai-draft-panel');
-  const badge = document.getElementById('ai-draft-badge');
-  const placeholder = document.getElementById('ai-draft-placeholder');
-  const textEl = document.getElementById('ai-draft-text');
-  const copyBtn = document.getElementById('ai-copy-btn');
-  const wordCountEl = document.getElementById('ai-word-count');
+/* ══════════════════════════════════════════════════════════════
+   CLIENT REFLECTION — streams "What I'm hearing so far"
+   ══════════════════════════════════════════════════════════════ */
+async function generateReflection(client) {
+  const panel   = document.getElementById('client-reflection-panel');
+  const body    = document.getElementById('client-reflection-body');
+  const loading = document.getElementById('client-reflection-loading');
 
   panel.style.display = 'block';
-  document.getElementById('ai-draft-client-name').textContent = client.firstName + ' ' + client.lastName;
 
-  // Build message content — text context always included
-  const contextBlock = `
-CLIENT INTAKE SUMMARY
-=====================
-Name: ${client.firstName} ${client.lastName}
-Current/Recent Title: ${client.title || 'Not provided'}
-Industry: ${client.industry || 'Not provided'}
-LinkedIn: ${client.linkedin ? 'linkedin.com/in/' + client.linkedin : 'Not provided'}
-Package Selected: ${client.package}
-What prompted this: ${client.why || 'Not provided'}
-`.trim();
+  const context = [
+    client.title    ? `Title: ${client.title}`       : '',
+    client.industry ? `Industry: ${client.industry}` : '',
+    client.linkedin ? `LinkedIn: linkedin.com/in/${client.linkedin}` : '',
+    client.why      ? `What prompted this: ${client.why}` : '',
+    `Package: ${client.package}`,
+  ].filter(Boolean).join('\n');
 
-  // Build messages — attach PDFs and text files
-  let messages;
-  const files = client.uploadedFiles || [];
-  const pdfFiles = files.filter(f => f.type === 'application/pdf');
-  const textFiles = files.filter(f => f.type === 'text/plain' || f.name.endsWith('.txt') || f.name.endsWith('.rtf'));
-  const mediaFiles = files.filter(f => f.type.startsWith('video/') || f.type.startsWith('audio/'));
-  const imageFiles = files.filter(f => f.type.startsWith('image/'));
+  const systemPrompt = `You write short reflections on behalf of Justin Gardner of CareerStory — a bespoke career narrative service. A client has just booked their intake session. You have their intake form in front of you. Your job is to show them you see their situation, and to surface a few things worth sitting with before the conversation.
 
-  const contentParts = [];
+VOICE
+Calm, warm, confident. Tom Bodett — steady and unhurried. No urgency, no hype, no coaching language, no hustle. Authoritative but never harsh. You are reflecting, not advising. You are not asking questions — you are surfacing provocations. No corporate language. No flattery. Never mention AI.
 
-  // Add PDF documents
-  if (pdfFiles.length > 0) {
-    placeholder.querySelector('.ai-placeholder-text').textContent = 'Reading uploaded documents…';
-    for (const pdf of pdfFiles) {
-      try {
-        const base64 = await fileToBase64(pdf);
-        contentParts.push({
-          type: 'document',
-          source: { type: 'base64', media_type: 'application/pdf', data: base64 }
-        });
-      } catch(e) { /* skip */ }
-    }
-  }
+STRUCTURE — follow exactly:
+1. Two or three sentences naming what you are picking up from their intake. Reference at least one specific detail — their title, their industry, the transition implied by what prompted them. Show that you are thinking about their story, not just reading their resume.
+2. Then a blank line, then this exact bold header on its own line: **Before we talk**
+3. Two or three brief provocations. Each one to two sentences. Not questions — statements they can sit with. Tie at least one directly to what they shared about what prompted this. Strong provocations sound like: "The work you are most proud of is rarely the most impressive on paper." Or: "The pattern across roles that seem unrelated is usually the thing you are known for — and often the hardest to name."
 
-  // Add images
-  for (const img of imageFiles) {
-    try {
-      const base64 = await fileToBase64(img);
-      const mediaType = img.type;
-      contentParts.push({
-        type: 'image',
-        source: { type: 'base64', media_type: mediaType, data: base64 }
-      });
-    } catch(e) { /* skip */ }
-  }
+Do not greet them by name. Do not sign off. No preamble. No em dashes inside the reflection body (you may use them in the provocations). Return only the reflection paragraph, the blank line, the bold header, and the provocations.`;
 
-  // Build text note about media files
-  let mediaNote = '';
-  if (mediaFiles.length > 0) {
-    mediaNote = '\n\nMEDIA FILES UPLOADED (audio/video — not directly readable, but noted for the discovery call):\n' +
-      mediaFiles.map(f => '- ' + f.name + ' (' + (f.size / 1024 / 1024).toFixed(1) + 'MB)').join('\n');
-  }
-
-  // Build text content from text files
-  let textContent = '';
-  for (const tf of textFiles) {
-    try {
-      const text = await tf.text();
-      textContent += '\n\nUPLOADED TEXT FILE (' + tf.name + '):\n' + text;
-    } catch(e) { /* skip */ }
-  }
-
-  const fullContext = contextBlock + textContent + mediaNote +
-    '\n\nUsing all uploaded materials and intake context above, write the narrative draft as instructed.';
-
-  contentParts.push({ type: 'text', text: fullContext });
-  messages = [{ role: 'user', content: contentParts.length === 1 ? fullContext : contentParts }];
-
-  placeholder.querySelector('.ai-placeholder-text').textContent = 'Drafting narrative…';
-
-  const systemPrompt = `You are a narrative writer specializing in professional career stories. Your job is to transform raw career data into a compelling, human, first-person career narrative for use on a personal website.
-
-You will be given two inputs:
-- A LinkedIn profile (URL or pasted content)
-- Notes and/or transcript from a 1-hour intake call
-
-Your output is a 1,200–1,800 word career narrative structured in five chapters:
-
-Chapter 1 — The Origin
-Where did this person begin? What early experience, environment, or moment shaped how they think about work? This is not their first job — it's the seed of who they became professionally.
-
-Chapter 2 — The Build
-The years of accumulation. Skills developed, roles taken, patterns that emerged. What did they get good at, and how? Look for the through-line that connects seemingly unrelated jobs or industries.
-
-Chapter 3 — The Pivot or Peak
-Every career has a defining moment — a bet they made, a door they walked through, a thing they built that mattered. Find it in the intake notes. This is the emotional center of the story.
-
-Chapter 4 — The Philosophy
-What do they believe about their work, their industry, their approach? This is what makes them distinct from someone with an identical resume. Pull this from how they spoke in the intake call, not from their LinkedIn bio.
-
-Chapter 5 — The Next Chapter
-Where are they going and why? This should feel like an invitation — to employers, collaborators, and opportunities. It should be forward-facing without being generic.
-
-WRITING GUIDELINES:
-Voice: First person, warm, confident, and specific. Never corporate. Never resume-language. Write like a thoughtful person reflecting on their own life, not like a LinkedIn summary.
-Specificity: Use real names of companies, real numbers, real project names where available. Vague writing kills credibility. "Led a team" is weak. "Built a 12-person content team from scratch during a rebrand" is strong.
-Emotion: Where the intake notes suggest pride, difficulty, excitement, or uncertainty — honor that. Don't flatten it into professionalism.
-Length: 1,200 words minimum, 1,800 maximum. Each chapter should breathe. No chapter should be under 150 words.
-
-What to avoid:
-- Buzzwords (passionate, innovative, dynamic, leverage, synergy)
-- Passive voice
-- Chronological résumé recitation
-- Generic openers ("I have always been passionate about...")
-- Anything that could have been written about anyone else
-
-BEFORE YOU WRITE:
-Read all inputs fully before drafting. Identify:
-- The single most interesting thing about this person that LinkedIn alone would never reveal
-- The moment in the intake call where they seemed most alive or most honest
-- The through-line that connects their whole career even if they haven't named it themselves
-
-Lead with that. Build everything else around it.
-
-OUTPUT FORMAT:
-Return the narrative in clean prose with chapter headings. After the narrative, add a brief section called EDITOR'S NOTES with 3–5 observations about what you found most compelling, what felt thin or underdeveloped, and what you'd want to ask the client in a follow-up if needed.
-
-NOTE: At this stage you are working from intake form data only — not a full call transcript. Use what's available (resume, LinkedIn handle, title, industry, and what prompted them to book) to produce the strongest possible first draft. Flag anything that needs to be filled in from the discovery call inside [BRACKETS].`;
+  const userPrompt = `Write a reflection for ${client.firstName} based on this intake:\n\n${context}`;
 
   try {
-    const response = await fetch('https://white-fire-5035.justinpgardner.workers.dev', {
+    const response = await fetch(CONFIG.CLAUDE_WORKER, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 2500,
+        max_tokens: 600,
         system: systemPrompt,
         stream: true,
-        messages,
+        messages: [{ role: 'user', content: userPrompt }],
       })
     });
 
-    if (!response.ok) {
-      const err = await response.json();
-      throw new Error(err.error?.message || 'API error ' + response.status);
-    }
+    if (!response.ok) throw new Error('Worker error ' + response.status);
 
-    // Switch UI to streaming mode
-    placeholder.style.display = 'none';
-    textEl.style.display = 'block';
-    textEl.className = 'ai-draft-text streaming';
-    badge.textContent = 'Generating…';
+    loading.style.display = 'none';
+    body.innerHTML = '';
+    body.classList.add('streaming');
 
     let fullText = '';
     const reader = response.body.getReader();
@@ -2465,10 +2238,7 @@ NOTE: At this stage you are working from intake form data only — not a full ca
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
-
-      const chunk = decoder.decode(value, { stream: true });
-      const lines = chunk.split('\n').filter(l => l.startsWith('data: '));
-
+      const lines = decoder.decode(value, { stream: true }).split('\n').filter(l => l.startsWith('data: '));
       for (const line of lines) {
         const data = line.slice(6).trim();
         if (data === '[DONE]') continue;
@@ -2476,218 +2246,23 @@ NOTE: At this stage you are working from intake form data only — not a full ca
           const parsed = JSON.parse(data);
           if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
             fullText += parsed.delta.text;
-            textEl.textContent = fullText;
-            // Auto-scroll to bottom as text streams
-            const body = document.getElementById('ai-draft-body');
-            body.scrollTop = body.scrollHeight;
+            // Render markdown bold inline; preserve whitespace via CSS white-space: pre-wrap
+            body.innerHTML = fullText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
           }
         } catch (_) {}
       }
     }
 
-    // Done streaming
-    textEl.className = 'ai-draft-text'; // remove cursor
-    badge.textContent = 'Draft ready';
-    badge.className = 'ai-draft-badge done';
-    copyBtn.disabled = false;
-
-    const words = fullText.trim().split(/\s+/).length;
-    wordCountEl.textContent = words + ' words';
-
-    // Store for copy
-    window._narrativeDraft = fullText;
-
-    // ── Push to Google Drive ─────────────────────────────────
-    // Build files payload — encode PDFs and text files for Drive
-    const uploadedFilesData = [];
-    for (const file of (client.uploadedFiles || [])) {
-      try {
-        if (file.type === 'application/pdf' || file.type === 'text/plain' ||
-            file.name.endsWith('.txt') || file.name.endsWith('.doc') || file.name.endsWith('.docx')) {
-          const base64 = await fileToBase64(file);
-          uploadedFilesData.push({
-            name: file.name,
-            type: file.type || 'application/octet-stream',
-            base64: base64,
-            size: file.size,
-          });
-        } else {
-          // Note media files by name without encoding (too large)
-          uploadedFilesData.push({
-            name: file.name,
-            type: file.type,
-            base64: null,
-            size: file.size,
-          });
-        }
-      } catch(e) { /* skip */ }
-    }
-
-    uploadDraftToDrive({
-      clientName: client.firstName + ' ' + client.lastName,
-      clientEmail: client.email,
-      clientTitle: client.title,
-      clientIndustry: client.industry,
-      clientLinkedIn: client.linkedin,
-      clientWhy: client.why,
-      packageName: client.package,
-      priority: state.priorityOn ? 'Yes — Skip To The Front' : 'No',
-      sessionDate: formatDate(state.selectedDate) + ' at ' + state.selectedSlot + ' CT',
-      sessionDateISO: state.selectedDate.toISOString().split('T')[0],
-      sessionTime: state.selectedSlot,
-      narrativeDraft: fullText,
-      uploadedFiles: uploadedFilesData,
-    });
+    body.classList.remove('streaming');
 
   } catch (err) {
-    console.error('AI agent error:', err);
-    placeholder.style.display = 'none';
-    textEl.style.display = 'block';
-    textEl.className = 'ai-draft-text';
-    textEl.textContent = 'Draft generation failed: ' + err.message + '\n\nYou can generate manually after reviewing their intake data.';
-    badge.textContent = 'Error';
-    badge.className = 'ai-draft-badge error';
-    wordCountEl.textContent = '';
+    console.warn('Reflection error:', err);
+    loading.style.display = 'none';
+    body.classList.remove('streaming');
+    body.textContent = 'Looking forward to our conversation.';
   }
 }
 
-/* ══════════════════════════════════════════════════════════════
-   GOOGLE DRIVE UPLOAD via Apps Script Web App
-
-   SETUP — one time, takes ~5 minutes:
-   ─────────────────────────────────────────────────────────────
-   1. Go to script.google.com → New Project → name it "CareerStory Drive"
-   2. Delete the default code and paste the Apps Script below
-   3. Click Deploy → New Deployment → Type: Web App
-      - Execute as: Me (justinpgardner@gmail.com)
-      - Who has access: Anyone
-   4. Click Deploy → copy the Web App URL
-   5. Paste it into CONFIG.APPS_SCRIPT_URL above
-
-   ── PASTE THIS INTO APPS SCRIPT ──────────────────────────────
-   function doPost(e) {
-     try {
-       const data = JSON.parse(e.postData.contents);
-       const folderName = data.folderName || 'CareerStory — Client Narratives';
-
-       // Get the CareerStory folder directly by ID
-       let folder = DriveApp.getFolderById(data.folderId || '1zb4ev86NR8q91nofzf067mYE17koVMGR');
-
-       // Build the document title
-       const dateStr = Utilities.formatDate(new Date(), 'America/Chicago', 'yyyy-MM-dd');
-       const docTitle = dateStr + ' — ' + data.clientName + ' — Initial Narrative Draft';
-
-       // Create the Google Doc
-       const doc = DocumentApp.create(docTitle);
-       const body = doc.getBody();
-
-       // Header block
-       body.appendParagraph('CareerStory — Narrative Draft')
-           .setHeading(DocumentApp.ParagraphHeading.HEADING1);
-       body.appendParagraph('');
-
-       const meta = [
-         ['Client', data.clientName],
-         ['Email', data.clientEmail],
-         ['Title', data.clientTitle || '—'],
-         ['Industry', data.clientIndustry || '—'],
-         ['LinkedIn', data.clientLinkedIn ? 'linkedin.com/in/' + data.clientLinkedIn : '—'],
-         ['Package', data.packageName],
-         ['Session', data.sessionDate],
-         ['Generated', Utilities.formatDate(new Date(), 'America/Chicago', 'MMM d, yyyy h:mm a z')],
-       ];
-       meta.forEach(([label, value]) => {
-         const p = body.appendParagraph(label + ': ' + value);
-         p.setFontSize(10);
-       });
-
-       body.appendParagraph('').appendHorizontalRule();
-       body.appendParagraph('WHAT PROMPTED THIS').setHeading(DocumentApp.ParagraphHeading.HEADING2);
-       body.appendParagraph(data.clientWhy || '(not provided)').setFontSize(11);
-       body.appendParagraph('').appendHorizontalRule();
-       body.appendParagraph('NARRATIVE DRAFT — v1 (AI)').setHeading(DocumentApp.ParagraphHeading.HEADING2);
-       body.appendParagraph(data.narrativeDraft).setFontSize(12);
-       body.appendParagraph('').appendHorizontalRule();
-       body.appendParagraph('NOTES FOR DISCOVERY CALL')
-           .setHeading(DocumentApp.ParagraphHeading.HEADING2);
-       body.appendParagraph('[Your pre-call notes here]').setFontSize(11).setItalic(true);
-
-       doc.saveAndClose();
-
-       // Move doc into CareerStory folder
-       const file = DriveApp.getFileById(doc.getId());
-       folder.addFile(file);
-       DriveApp.getRootFolder().removeFile(file);
-
-       return ContentService
-         .createTextOutput(JSON.stringify({ success: true, docUrl: doc.getUrl(), docTitle }))
-         .setMimeType(ContentService.MimeType.JSON);
-
-     } catch(err) {
-       return ContentService
-         .createTextOutput(JSON.stringify({ success: false, error: err.message }))
-         .setMimeType(ContentService.MimeType.JSON);
-     }
-   }
-   ── END APPS SCRIPT ──────────────────────────────────────────
-   ══════════════════════════════════════════════════════════════ */
-async function uploadDraftToDrive(payload) {
-  const wordCountEl = document.getElementById('ai-word-count');
-  const badge = document.getElementById('ai-draft-badge');
-
-  if (!CONFIG.APPS_SCRIPT_URL) {
-    wordCountEl.textContent =
-      (payload.narrativeDraft.trim().split(/\s+/).length) + ' words · Drive not configured';
-    return;
-  }
-
-  try {
-    wordCountEl.textContent =
-      (payload.narrativeDraft.trim().split(/\s+/).length) + ' words · Saving to Drive…';
-
-    const response = await fetch(CONFIG.APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...payload,
-        folderName: CONFIG.DRIVE_FOLDER_NAME,
-        folderId: CONFIG.DRIVE_FOLDER_ID,
-      }),
-      // Apps Script requires no-cors for cross-origin POST from a plain HTML file
-      mode: 'no-cors',
-    });
-
-    // no-cors returns opaque response — we can't read it, but if it didn't throw, it worked
-    wordCountEl.innerHTML =
-      (payload.narrativeDraft.trim().split(/\s+/).length) +
-      ' words · <span style="color:#2e7d32">✓ Saved to Google Drive</span>';
-
-  } catch (err) {
-    console.warn('Drive upload error:', err);
-    wordCountEl.textContent =
-      (payload.narrativeDraft.trim().split(/\s+/).length) + ' words · Drive save failed';
-  }
-}
-
-function fileToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result.split(',')[1]);
-    reader.onerror = () => reject(new Error('File read failed'));
-    reader.readAsDataURL(file);
-  });
-}
-
-function copyDraft() {
-  if (!window._narrativeDraft) return;
-  navigator.clipboard.writeText(window._narrativeDraft).then(() => {
-    const btn = document.getElementById('ai-copy-btn');
-    btn.textContent = '✓ Copied';
-    setTimeout(() => {
-      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Draft`;
-    }, 2000);
-  });
-}
 function parseTime(timeStr) {
   const [time, ampm] = timeStr.split(' ');
   let [h, m] = time.split(':').map(Number);
