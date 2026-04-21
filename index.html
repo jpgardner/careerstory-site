@@ -1878,6 +1878,69 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ══════════════════════════════════════════════════════════════
+   SAVE BOOKING TO DRIVE via Apps Script
+   ══════════════════════════════════════════════════════════════ */
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = () => reject(new Error('File read failed'));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function saveBookingToDrive(payload) {
+  if (!CONFIG.APPS_SCRIPT_URL) return;
+
+  // Convert uploaded files to base64 for transport
+  const uploadedFilesData = [];
+  for (const file of (payload._files || [])) {
+    try {
+      if (file.size < 5 * 1024 * 1024) {
+        uploadedFilesData.push({
+          name:   file.name,
+          type:   file.type,
+          size:   file.size,
+          base64: await fileToBase64(file),
+        });
+      } else {
+        uploadedFilesData.push({ name: file.name, type: file.type, size: file.size });
+      }
+    } catch (e) { /* skip unreadable */ }
+  }
+
+  const body = {
+    clientName:     payload.clientName,
+    clientEmail:    payload.clientEmail,
+    clientTitle:    payload.clientTitle,
+    clientIndustry: payload.clientIndustry,
+    clientLinkedIn: payload.clientLinkedIn,
+    clientWhy:      payload.clientWhy,
+    packageName:    payload.packageName,
+    priority:       payload.priority,
+    sessionDate:    payload.sessionDate,
+    sessionDateISO: payload.sessionDateISO,
+    sessionTime:    payload.sessionTime,
+    narrativeDraft: '',
+    uploadedFiles:  uploadedFilesData,
+    folderName:     CONFIG.DRIVE_FOLDER_NAME,
+    folderId:       CONFIG.DRIVE_FOLDER_ID,
+  };
+
+  try {
+    await fetch(CONFIG.APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      mode: 'no-cors',
+    });
+    console.log('Booking saved to Drive + calendar invite sent');
+  } catch (err) {
+    console.warn('Drive save error:', err);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
    SUBMIT + EMAILJS
    ══════════════════════════════════════════════════════════════ */
 async function submitBooking() {
@@ -1902,6 +1965,22 @@ async function submitBooking() {
   if (tl) tl.textContent = formatDate(state.selectedDate) + ' at ' + state.selectedSlot + ' CT';
 
   goToStep(4);
+
+  // ── Save to Drive + fire calendar invite via Apps Script ──
+  saveBookingToDrive({
+    clientName:     first + ' ' + last,
+    clientEmail:    email,
+    clientTitle:    document.getElementById('f-title').value,
+    clientIndustry: document.getElementById('f-industry').value,
+    clientLinkedIn: document.getElementById('f-linkedin').value,
+    clientWhy:      document.getElementById('f-why').value,
+    packageName:    pkgDisplay,
+    priority:       state.priorityOn ? 'Yes — Skip To The Front' : 'No',
+    sessionDate:    formatDate(state.selectedDate) + ' at ' + state.selectedSlot + ' CT',
+    sessionDateISO: state.selectedDate.toISOString().split('T')[0],
+    sessionTime:    state.selectedSlot,
+    _files:         state.uploadedFiles,
+  });
 
   // ── Send emails via EmailJS ──────────────────────────────
   const emailParams = {
