@@ -1,0 +1,62 @@
+# CareerStory edge config.
+# On-demand TLS issues a Let's Encrypt cert the first time an unknown
+# host hits the box. The ask endpoint gates which hosts are allowed
+# so random domains pointed at our IP do not exhaust rate limits.
+#
+# Deploy path: /etc/caddy/Caddyfile (provision-vps.sh handles symlink).
+# Sites root:  /srv/careerstory/sites/<host>/index.html
+# Reload:      sudo systemctl reload caddy
+
+{
+	email ops@careerstory.co
+	on_demand_tls {
+		ask http://127.0.0.1:9000/check
+	}
+}
+
+# Default vhost: anything that resolves to this box and passes the ask gate.
+# Cloudflare proxies in front of every client domain so origin traffic is light.
+:443 {
+	tls {
+		on_demand
+	}
+
+	root * /srv/careerstory/sites/{host}
+	encode gzip zstd
+	file_server
+
+	header {
+		Cache-Control "public, max-age=3600"
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	@notfound not file
+	handle @notfound {
+		respond "site not found" 404
+	}
+
+	log {
+		output file /var/log/caddy/access.log {
+			roll_size 100mb
+			roll_keep 5
+		}
+	}
+}
+
+# Plain HTTP redirects to HTTPS for any client host.
+:80 {
+	redir https://{host}{uri} permanent
+}
+
+# Sidecar endpoints exposed only on localhost. Stripe webhook is
+# proxied via Caddy on a dedicated path off the marketing site so
+# Stripe can reach it over TLS.
+careerstory.co {
+	handle_path /api/stripe-webhook {
+		reverse_proxy 127.0.0.1:9000
+	}
+	respond "careerstory marketing host" 200
+}

@@ -1,0 +1,4 @@
+# Client sites live one folder deep:
+#   clients/<domain>/index.html
+# The deploy workflow rsyncs this entire tree to /srv/careerstory/sites/.
+# Repo should go private the moment a real client folder is added.

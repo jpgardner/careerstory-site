@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "_schema": {
+    "domain": "the live hostname (apex or www, served by Caddy from /srv/careerstory/sites/<domain>/)",
+    "client": "human name for ops reference",
+    "status": "active | grace | suspended | offboarded",
+    "stripe_customer_id": "cus_xxx (lookup target for webhook events)",
+    "stripe_subscription_id": "sub_xxx",
+    "onboarded_at": "ISO timestamp",
+    "grace_started_at": "ISO timestamp, present only when status=grace",
+    "grace_ends_at": "ISO timestamp, present only when status=grace",
+    "suspended_at": "ISO timestamp, present only when status=suspended",
+    "current_version_file": "path under clients/, e.g. amanda-logan.com/index.html",
+    "updates_used_this_quarter": "integer, soft-enforced quarterly update budget",
+    "email_alias": "ImprovMX or Workspace alias, e.g. amanda@amanda-logan.com -> amanda@gmail.com",
+    "notes": "ops-only freeform"
+  },
+  "clients": []
+}
