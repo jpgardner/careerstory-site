@@ -1,0 +1,9 @@
+# Operator-local env, never commit
+infra/.env
+
+# Sidecar dependencies installed on VPS, not in repo
+infra/sidecar/node_modules/
+
+# OS noise
+.DS_Store
+*.swp

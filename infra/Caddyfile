@@ -51,12 +51,17 @@
 	redir https://{host}{uri} permanent
 }
 
-# Sidecar endpoints exposed only on localhost. Stripe webhook is
-# proxied via Caddy on a dedicated path off the marketing site so
-# Stripe can reach it over TLS.
-careerstory.co {
+# Operator marketing host. Currently used only as the public TLS
+# endpoint for the Stripe webhook. The actual marketing site stays
+# on tiiny.site for Phase 1. Swap this domain in your fork if you
+# use a different one (must be the host you set in Stripe webhooks).
+careerstory.pro, www.careerstory.pro {
 	handle_path /api/stripe-webhook {
 		reverse_proxy 127.0.0.1:9000
 	}
-	respond "careerstory marketing host" 200
+	# Optional: serve the marketing site from this box later.
+	# root * /srv/careerstory/marketing
+	# file_server
+	respond /healthz "ok" 200
+	respond "careerstory" 200
 }
